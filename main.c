@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/01/21 19:41:43 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:02:23 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,53 @@
 #include "libft/get_next_line.h"
 #include <fcntl.h>
 
-static int	check_file(char *file)
+static int	check_file(char *str, int n)
 {
-	int fd;
-	int y;
-	int z;
-	char *matrix[4][4];
+	int	len;
+	int	i;
+	int	x;
 
-	y = 0;
-	z = 0;
+	i = 0;
+	x = 1;
+	len = ft_strlen(str);
+	while (i <= len)
+	{
+		if (str[x * 5 - 1] != '\n')
+			return (0);
+		n++;
+		i++;
+	}
+	ft_putstr(str);
+	return (1);
+}
+
+static int	convert_file(char *file)
+{
+	int		fd;
+	int		ret;
+	int		n;
+	char	*buff;
+	char	*str;
+
+	buff = (char *)ft_memalloc(sizeof(char) * 21 + 1);
 	fd = open(file, O_RDONLY);
+	n = 1;
 	if (fd == -1)
 		return (0);
-	while (get_next_line(fd, (&matrix[y][z])) == 1)
+	ret = read(fd, buff, 21);
+	str = ft_strdup(buff);
+	while (ret > 0)
 	{
-		ft_putstr(matrix[y][z]);
-		ft_putchar('\n');
-		y++;
-		while (y <= 3)
+		ret = read(fd, buff, 21);
+		if (ret > 0)
 		{
-			get_next_line(fd, (&matrix[y][z]));
-			ft_putstr(matrix[y][z]);
-			ft_putchar('\n');
-			y++;
+			str = ft_strjoin(str, buff);
+			n++;
 		}
-		y = 0;
-		z++;
 	}
+	ft_strdel(&buff);
 	close(fd);
-
-	if (ft_strcmp(matrix[0][0], "....") != 0)
-		return (0);
-
-	return (1);
+	return (check_file(str, n));
 }
 
 int	main(int argc, char **argv)
@@ -56,7 +70,7 @@ int	main(int argc, char **argv)
 		ft_putstr("usage: ./fillit valid_file\n");
 		return (0);
 	}
-	if (check_file(argv[1]) != 1)
+	if (convert_file(argv[1]) != 1)
 	{
 		ft_putstr("error\n");
 		return (0);
