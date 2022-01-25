@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/01/24 19:02:23 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:06:20 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,49 @@
 
 static int	check_file(char *str, int n)
 {
-	int	len;
 	int	i;
 	int	x;
+	int	y;
+	int	z;
+	int blocks;
 
 	i = 0;
-	x = 1;
-	len = ft_strlen(str);
-	while (i <= len)
+	x = 0;
+	y = 0;
+	z = 0;
+	blocks = 0;
+	while (z < n)
 	{
-		if (str[x * 5 - 1] != '\n')
+		while (y < 4)
+		{
+			while (x < 4)
+			{
+				if (str[i] != '.' && str[i] != '#')
+					return (0);
+				if (str[i] == '#')
+				{
+					blocks++;
+					if(str[i] != str[i - 1] && str[i]!= str[i + 1] 
+						&& str[i] != str[i - 5] && str[i]!= str[i + 5])
+						return (0);
+				}
+				if (blocks > 4)
+					return (0);
+				x++;
+				i++;
+			}
+			if (str[i] != '\n')
+				return (0);
+			x = 0;
+			i++;
+			y++;
+		}
+		if (str[i] != '\n')
 			return (0);
-		n++;
+		y = 0;
+		blocks = 0;
 		i++;
+		z++;
 	}
 	ft_putstr(str);
 	return (1);
@@ -84,5 +114,5 @@ int	main(int argc, char **argv)
 		- arrange in smallest square
 		- izi pz
 */
-	return(1);
+	return (1);
 }
