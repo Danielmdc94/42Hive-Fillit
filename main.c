@@ -6,15 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/01/25 18:09:31 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:59:16 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "libft/get_next_line.h"
-#include <fcntl.h>
+#include "fillit.h"
 
-static int	check_file(char *str, int n)
+/*static int	validate_file(char *buff, int pieces)
 {
 	int	i;
 	int	x;
@@ -27,7 +25,7 @@ static int	check_file(char *str, int n)
 	y = 0;
 	z = 0;
 	blocks = 0;
-	while (z < n)
+	while (z < n_pieces)
 	{
 		while (y < 4)
 		{
@@ -51,8 +49,11 @@ static int	check_file(char *str, int n)
 			i++;
 			y++;
 		}
-		if (str[i] != '\n')
-			return (0);
+		if (z != n_pieces)
+		{
+			if (str[i] != '\n')
+				return (0);
+		}
 		y = 0;
 		if (blocks != 4)
 			return (0);
@@ -68,43 +69,28 @@ static int	convert_file(char *file)
 {
 	int		fd;
 	int		ret;
-	int		n;
-	char	*buff;
-	char	*str;
+	int		pieces;
+	char	buff[547];
 
-	buff = (char *)ft_memalloc(sizeof(char) * 21 + 1);
 	fd = open(file, O_RDONLY);
-	n = 1;
-	if (fd == -1)
-		return (0);
-	ret = read(fd, buff, 21);
-	str = ft_strdup(buff);
-	while (ret > 0)
-	{
-		ret = read(fd, buff, 21);
-		if (ret > 0)
-		{
-			str = ft_strjoin(str, buff);
-			n++;
-		}
-	}
-	ft_strdel(&buff);
+	ret = read(fd, buff, 547);
+	if (fd == -1 || ret < 0)
+		error_manager(0);
 	close(fd);
-	return (check_file(str, n));
+	buff[ret] = '\0';
+	if ((ret + 1) % 21 != 0 || ret == 0)
+		error_manager(0);
+	pieces = (ret + 1) / 21;
+	validate_file(buff, pieces);
+	return (1);
 }
-
+*/
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
-	{
-		ft_putstr("usage: ./fillit valid_file\n");
-		return (0);
-	}
+		error_manager(1);
 	if (convert_file(argv[1]) != 1)
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
+		error_manager(0);
 	else
 		ft_putstr("It kinda works\n");
 /*

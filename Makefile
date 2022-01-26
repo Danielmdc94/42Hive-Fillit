@@ -6,7 +6,7 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 13:41:26 by dpalacio          #+#    #+#              #
-#    Updated: 2022/01/21 15:30:30 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/01/26 15:53:10 by dpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,20 +14,20 @@ NAME = fillit
 
 FLAGS = -Wall -Wextra -Werror
 
-INCLUDES = libft/includes
+INCLUDES = -I ./libft/
 
-SRC = main.c
+LIB = -L ./libft -lft
 
-OBJ = main.o
+SRC = main.c error_manager.c convert_file.c
+
+OBJ = main.o error_manager.o convert_file.o
 
 all: $(NAME)
 
 $(NAME):
-	clang -Wall -Wextra -Werror -I libft/includes -o main.o -c main.c
-	clang -o $(NAME) main.o -I libft/includes -L libft/ -lft
-
+	gcc $(FLAGS) $(INCLUDES) $(SRC) $(LIB) -o $(NAME)
 lib:
-	make -C libft/ fclean && make -C libft/
+	make -C libft/ re
 
 clean:
 	rm -f *.o
