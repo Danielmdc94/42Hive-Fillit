@@ -6,13 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:46:01 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/01/26 18:33:01 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/01 14:53:33 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	validate_file(char *buff, int ret, int pieces)
+static void	validate_file(char *buff, int ret, int pieces)
 {
 	int		i;
 	int		x;
@@ -41,26 +41,25 @@ static int	validate_file(char *buff, int ret, int pieces)
 				}
 				if (pieces > 0)
 					matrix[x][y][pieces] = buff[i];
-				ft_putchar(matrix[x][y][pieces]);
+				//ft_putchar(matrix[x][y][pieces]);
 				x++;
 				i++;
 			}
 			if (buff[i] != '\n')
 				error_manager(0);
 			x = 0;
-			ft_putchar('\n');
+			//ft_putchar('\n');
 			i++;
 			y++;
 		}
 		if ((buff[i] != '\n' && buff[i] != '\0') || blocks != 4)
 			error_manager(0);
-		ft_putchar('\n');
+		//ft_putchar('\n');
 		y = 0;
 		blocks = 0;
 		pieces--;
 		i++;
 	}
-	return (1);
 }
 
 int	convert_file(char *file)
