@@ -1,0 +1,5 @@
+
+- Norm
+- No extra #include's or forgotten printf's
+- Author files in libft also changed to both?
+- Test files ending with no \n, with 1 and with several \n's
