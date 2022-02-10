@@ -6,14 +6,14 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:46:01 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/10 16:24:42 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:10:27 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 void	validate_format(char *buff, int pieces);
-void	fill_int_array
+int	create_matrix(char *buff, int bit, int i);
 
 void	validate_file(char *file)
 {
@@ -39,7 +39,7 @@ void	validate_format(char *buff, int pieces)
 	int		i;
 	int		b;
 	int		p;
-	int	matrix[16][26];
+	int		matrix[16][26];
 
 	i = 0;
 	b = 0;
@@ -51,7 +51,8 @@ void	validate_format(char *buff, int pieces)
 			if (i != 0 && buff[i] != '\n')
 				error(0);
 			while (b < 16)
-			{	
+			{
+//				matrix[b][p] = create_matrix(buff, matrix[b][p], i);
 				if (buff[i] == '\n')
 					i++;
 				if (buff[i] == '.')
@@ -72,4 +73,17 @@ void	validate_format(char *buff, int pieces)
 			b = 0;
 		}
 	}
+}
+
+int	create_matrix(char *buff, int bit, int i)
+{
+		if (buff[i] == '\n')
+			i++;
+		if (buff[i] == '.')
+			bit = 0;
+		else if (buff[i] == '#')
+			bit = 1;
+		else
+			error(0);
+	return (bit);
 }

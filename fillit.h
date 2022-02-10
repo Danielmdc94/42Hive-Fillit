@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/10 12:53:04 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/10 18:29:36 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 
 void	error(int error_code);
-void	validate_file(char *file);
+int		main(int argc, char **argv);
+char	*read_file(char *file);
 
 #endif
