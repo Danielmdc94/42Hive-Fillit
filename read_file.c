@@ -6,13 +6,14 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/10 19:30:04 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/11 12:43:59 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 char	*validate_format(char *file, int tetriminos);
+int		check_tet(char *file_str, int i);
 
 char	*read_file(char *file)
 {
@@ -39,22 +40,42 @@ char	*validate_format(char *file_str, int tetriminos)
 {
 	int	i;
 
-	tetriminos = 0;
 	i = 0;
-	while (file_str[i] != '\0')
+	while (file_str[i] != '\0' && tetriminos > 0)
 	{
-		if ((i + 1) % 21 == 0 && file_str[i] != '\n')
+		i = check_tet(file_str, i);
+		if (file_str[i] != '\n' && file_str[i] != '\0')
 			error(0);
-		if (file_str[i] == '\n')
-			i++;
-		if (file_str[i] == '\n')
-			i++;
-		if (file_str[i] != '.' && file_str[i] != '#')
-			error(0);
-		ft_putchar(file_str[i]);
+		tetriminos--;
 		i++;
+		ft_putchar('\n');
 	}
-
-
 	return (file_str);
+}
+
+int	check_tet(char *file_str, int i)
+{
+	int	lines;
+	int	columns;
+
+	lines = 0;
+	columns = 0;
+	while (lines < 4)
+	{
+		while (columns < 4)
+		{
+			ft_putchar(file_str[i]);
+			if (file_str[i] != '.' && file_str[i] != '#')
+				error(0);
+			columns++;
+			i++;
+		}
+		if (file_str[i] != '\n')
+			error(0);
+		columns = 0;
+		i++;
+		lines++;
+		ft_putchar('\n');
+	}
+	return (i);
 }
