@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/11 12:43:59 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/11 13:34:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*validate_format(char *file_str, int tetriminos)
 			error(0);
 		tetriminos--;
 		i++;
-		ft_putchar('\n');
+//		ft_putchar('\n');
 	}
 	return (file_str);
 }
@@ -64,7 +64,7 @@ int	check_tet(char *file_str, int i)
 	{
 		while (columns < 4)
 		{
-			ft_putchar(file_str[i]);
+//			ft_putchar(file_str[i]);
 			if (file_str[i] != '.' && file_str[i] != '#')
 				error(0);
 			columns++;
@@ -75,7 +75,7 @@ int	check_tet(char *file_str, int i)
 		columns = 0;
 		i++;
 		lines++;
-		ft_putchar('\n');
+//		ft_putchar('\n');
 	}
 	return (i);
 }
