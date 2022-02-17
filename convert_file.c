@@ -1,26 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   convert_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/17 16:36:07 by dpalacio         ###   ########.fr       */
+/*   Created: 2022/02/17 16:20:08 by dpalacio          #+#    #+#             */
+/*   Updated: 2022/02/17 17:19:51 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int argc, char **argv)
+int	convert_file(char *file)
 {
-	char	*file;
+	int	i;
+	int	matrix[16][26];
+	int	x;
+	int	y;
 
-	if (argc != 2)
-		error(1);
-	file = read_file(argv[1]);
-	ft_putstr(file);
-	convert_file(file);
-	ft_putstr("It kinda works\n");
-	return (0);
+	i = 0;
+	x = 0;
+	y = 0;
+	while (file[i] != '\0')
+	{
+		while (x < 16)
+		{
+			if (file[i] == '#')
+			{
+				matrix[x][y] = 1;
+//				ft_putnbr(matrix[x][y]);
+			}
+			if (file[i] == '.')
+			{
+				matrix[x][y] = 0;
+//				ft_putnbr(matrix[x][y]);
+			}
+			i++;
+			if (file[i] != '\n')
+				x++;
+		}
+//		ft_putchar('\n');
+		x = 0;
+		y++;
+	}
+	return (matrix);
 }
