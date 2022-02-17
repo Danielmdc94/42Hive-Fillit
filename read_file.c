@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/11 13:34:32 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:17:18 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 char	*validate_format(char *file, int tetriminos);
 int		check_tet(char *file_str, int i);
+
+/*
+ * read_file() takes the file's name given to the program.
+ * Opens the file, reads it and checks characters read.
+ * Returns the string containing the file once it has been validated.
+ */
 
 char	*read_file(char *file)
 {
@@ -36,6 +42,12 @@ char	*read_file(char *file)
 	return (validate_format(file_str, tetriminos));
 }
 
+/*
+ * validate_format() takes the str with the file and the n of tetriminos read.
+ * Checks \n after each tetrimino.
+ * Returns the string with the file.
+ */
+
 char	*validate_format(char *file_str, int tetriminos)
 {
 	int	i;
@@ -52,6 +64,12 @@ char	*validate_format(char *file_str, int tetriminos)
 	}
 	return (file_str);
 }
+
+/*
+ * check_tet() takes the str and the index we currently are.
+ * It checks that only valid characters exist and \n are in place.
+ * Returns the index where validate_format() can continue.
+ */
 
 int	check_tet(char *file_str, int i)
 {
