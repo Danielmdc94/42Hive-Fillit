@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:00:03 by acastano          #+#    #+#             */
-/*   Updated: 2022/02/10 21:04:59 by acastano         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:25:02 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_bitoint_base(char *binary_string, int base)
 	if (!binary_string)
 		return (-1);
 	exponent = ft_strlen(binary_string) - 1;
+//	exponent = 16 - 1;
 	number = 0;
 	while (exponent >= 0)
 	{
@@ -46,13 +47,58 @@ int	ft_bitoint_base(char *binary_string, int base)
 	return (number);
 }
 
+int ft_print_bin(int int_piece)
+{
+    int i;
+
+    i = 15;//0000 0000 0001 0000
+    while (i >= 0)
+    {
+        if (int_piece & (1UL << i))
+            printf("1");
+        else
+            printf("0");
+		if (i % 4 == 0)
+			printf("\n");
+        i--;
+    }
+//....
+//....
+//..#.
+//###.
+    return (0);
+}
+
 int	main(void)
 {
-	printf("Base 2 \"0\" is %d\n", ft_bitoint_base("0", 2));
-	printf("Base 2 \"101100\" is %d\n", ft_bitoint_base("101100", 2));
-	printf("Base 10 \"0\" is %d\n", ft_bitoint_base("0", 10));
-	printf("Base 10 \"101100\" is %d\n", ft_bitoint_base("101100", 10));
-	printf("Base 10 \"0\" is %d\n", ft_bitoint_base("0", 10));
-	printf("Base 10 \"0101100\" is %d\n", ft_bitoint_base("0101100", 10));
+//	char	*pieces;
+//	int	num_pieces;
+
+//	pieces = "00000000000100000000000000010000";
+//	num_pieces = ft_strlen(pieces) / 16;
+	printf("Base 2 \"0\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("0", 2), ft_atoi("0"));
+	printf("Base 2 \"101100\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("101100", 2), ft_atoi("101100"));
+	printf("Base 10 \"0\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("0", 10), ft_atoi("0"));
+	printf("Base 10 \"101100\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("101100", 10), ft_atoi("101100"));
+	printf("Base 10 \"0\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("0", 10), ft_atoi("0"));
+	printf("Base 10 \"0101100\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("0101100", 10), ft_atoi("0101100"));
+	printf("\nLets try to print those binary numbers\n");
+
+//	ft_bittoint(pieces + 16, 2);
+	ft_print_bin(46);
+	printf("\n");
 	return (0);
 }
+
+//string 0 y 1
+//num pieces
+//
+
+//struct
+//char *string;
+//int num;
+//int height;
+//int width;
+//int pos_x;
+//int pos_y;
+//char id;
