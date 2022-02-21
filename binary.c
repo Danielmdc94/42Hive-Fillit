@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:00:03 by acastano          #+#    #+#             */
-/*   Updated: 2022/02/21 15:25:02 by acastano         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:37:33 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int ft_print_bin(int int_piece)
 {
     int i;
 
-    i = 15;//0000 0000 0001 0000
+    i = 15;//0000 0000 0010 1110 is 46
     while (i >= 0)
     {
         if (int_piece & (1UL << i))
@@ -69,13 +69,32 @@ int ft_print_bin(int int_piece)
     return (0);
 }
 
+int	ft_move_piece(int piece)
+{
+	while (!(piece & 1111000000000000))//if nothing in top line, shift up
+		piece = piece << 4;
+//	ft_print_bin(piece);
+//	if (!(piece & 1000100010001000))//if nothing in left line, shift left. NOT WORKING
+	if (!(piece & (1UL << 3) & (1UL << 7) && (1UL << 11) & (1UL << 15)))//if nothing in left line, shift left. IF IN WHILE LOOP, infinite loop >.< WHYYY
+		piece = piece << 1;
+	if (!(piece & (1UL << 3) & (1UL << 7) && (1UL << 11) & (1UL << 15)))//if nothing in left line, shift left
+		piece = piece << 1;
+	return (piece);
+}
+
+/*
+int	ft_is_collision(int piece, int map)
+{
+	if ()
+	return (0);
+}
+*/
+
 int	main(void)
 {
-//	char	*pieces;
-//	int	num_pieces;
+	int	piece;
 
-//	pieces = "00000000000100000000000000010000";
-//	num_pieces = ft_strlen(pieces) / 16;
+	piece = 275;//46, 71, 39, 275
 	printf("Base 2 \"0\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("0", 2), ft_atoi("0"));
 	printf("Base 2 \"101100\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("101100", 2), ft_atoi("101100"));
 	printf("Base 10 \"0\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("0", 10), ft_atoi("0"));
@@ -84,15 +103,14 @@ int	main(void)
 	printf("Base 10 \"0101100\" is %d\tatoi says \"%d\"\n", ft_bitoint_base("0101100", 10), ft_atoi("0101100"));
 	printf("\nLets try to print those binary numbers\n");
 
-//	ft_bittoint(pieces + 16, 2);
-	ft_print_bin(46);
+	ft_print_bin(piece);
+	printf("\n");
+	printf("\nLets boogie the piece to the top corner\n");
+	piece = ft_move_piece(piece);
+	ft_print_bin(piece);
 	printf("\n");
 	return (0);
 }
-
-//string 0 y 1
-//num pieces
-//
 
 //struct
 //char *string;
