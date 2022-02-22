@@ -6,19 +6,20 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/22 17:13:05 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/22 18:12:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*validate_format(char *file, int tetriminos);
-int		check_tet(char *file_str, int i);
-char	*isolate_piece(char *file_str, int tetriminos);
+static char	*validate_format(char *file, int tetriminos);
+static int	check_tet(char *file_str, int i);
+static char	**store_pieces(char *file_str, int tetriminos);
+static char	*isolate_piece(char *file_str, int tetriminos);
 
 /*
  * read_file() takes the file's name given to the program.
- * Opens the file, reads it and checks characters read.
+ * Opens the file, reads it and checks everything is correct(except piece)
  * Returns the string containing the file once it has been validated.
  */
 
@@ -41,12 +42,7 @@ char	**read_file(char *file)
 	tetriminos = (r_bytes + 1) / 21;
 	file_str = ft_strdup(buff);
 	validate_format(file_str, tetriminos);
-	while (tetriminos > 0)
-	{
-		//isolate piece and store it somewhere = isolate_piece(file_str, tetriminos);
-		tetriminos--;
-	}
-	return (/*Whatever we store the tetriminos in*/);
+	return (store_pieces(file_str, tetriminos));
 }
 
 /*
@@ -55,7 +51,7 @@ char	**read_file(char *file)
  * Returns the string with the file.
  */
 
-char	*validate_format(char *file_str, int tetriminos)
+static char	*validate_format(char *file_str, int tetriminos)
 {
 	int	i;
 
@@ -67,7 +63,6 @@ char	*validate_format(char *file_str, int tetriminos)
 			error(0);
 		tetriminos--;
 		i++;
-//		ft_putchar('\n');
 	}
 	return (file_str);
 }
@@ -78,7 +73,7 @@ char	*validate_format(char *file_str, int tetriminos)
  * Returns the index where validate_format() can continue.
  */
 
-int	check_tet(char *file_str, int i)
+static int	check_tet(char *file_str, int i)
 {
 	int	lines;
 	int	columns;
@@ -89,7 +84,6 @@ int	check_tet(char *file_str, int i)
 	{
 		while (columns < 4)
 		{
-//			ft_putchar(file_str[i]);
 			if (file_str[i] != '.' && file_str[i] != '#')
 				error(0);
 			columns++;
@@ -100,12 +94,36 @@ int	check_tet(char *file_str, int i)
 		columns = 0;
 		i++;
 		lines++;
-//		ft_putchar('\n');
 	}
 	return (i);
 }
 
-char	*isolate_piece(char *file_str, int tetriminos)
+/*
+ * store_pieces() takes the str that holds the file and the number of tetriminos.
+ * It stores each piece individually in an array of str.
+ * Returns said array.
+ */
+
+static char	**store_pieces(char *file_str, int tetriminos)
+{
+	char	**file_pieces;
+
+	file_pieces = (char **)ft_memalloc(tetriminos + 1);
+	while (tetriminos > 0)
+	{
+		file_pieces[tetriminos - 1] = isolate_piece(file_str, tetriminos);
+		tetriminos--;
+	}
+	return (file_pieces);
+}
+
+/*
+ * isolate_pieces() takes the str that holds the file and the number of tetriminos.
+ * It creates a str for the current array element in store_pieces.
+ * Returns said str.
+ */
+
+static char	*isolate_piece(char *file_str, int tetriminos)
 {
 	char	*piece;
 	int		i;
@@ -126,7 +144,5 @@ char	*isolate_piece(char *file_str, int tetriminos)
 		}
 	}
 	piece = piece - 16;
-//	ft_putstr(piece);
-//	ft_putchar('\n');
 	return (piece);
 }
