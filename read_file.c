@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/17 16:19:47 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:13:05 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*validate_format(char *file, int tetriminos);
 int		check_tet(char *file_str, int i);
+char	*isolate_piece(char *file_str, int tetriminos);
 
 /*
  * read_file() takes the file's name given to the program.
@@ -21,7 +22,7 @@ int		check_tet(char *file_str, int i);
  * Returns the string containing the file once it has been validated.
  */
 
-char	*read_file(char *file)
+char	**read_file(char *file)
 {
 	int		fd;
 	size_t	r_bytes;
@@ -39,7 +40,13 @@ char	*read_file(char *file)
 		error(0);
 	tetriminos = (r_bytes + 1) / 21;
 	file_str = ft_strdup(buff);
-	return (validate_format(file_str, tetriminos));
+	validate_format(file_str, tetriminos);
+	while (tetriminos > 0)
+	{
+		//isolate piece and store it somewhere = isolate_piece(file_str, tetriminos);
+		tetriminos--;
+	}
+	return (/*Whatever we store the tetriminos in*/);
 }
 
 /*
@@ -96,4 +103,30 @@ int	check_tet(char *file_str, int i)
 //		ft_putchar('\n');
 	}
 	return (i);
+}
+
+char	*isolate_piece(char *file_str, int tetriminos)
+{
+	char	*piece;
+	int		i;
+
+	i = 0;
+	piece = ft_strnew(16);
+	file_str = file_str + ((tetriminos - 1) * 21);
+	while (i < 16)
+	{
+		if (*file_str == '\n')
+			file_str++;
+		else
+		{
+			*piece = *file_str;
+			file_str++;
+			piece++;
+			i++;
+		}
+	}
+	piece = piece - 16;
+//	ft_putstr(piece);
+//	ft_putchar('\n');
+	return (piece);
 }
