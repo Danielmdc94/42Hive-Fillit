@@ -41,12 +41,48 @@ int	ft_move_piece(int piece)
   return (piece);
 }
 
-//checks for collision and places piece. under construction
+//moves piece as many positions as x and y say
+int	ft_shift_piece(int piece, int x, int y)
+{
+  while (y > 0 && !(piece & 15))//0000000000001111
+    {
+      piece = piece >> 4;
+      y--;
+    }
+  while (x > 0 && !(piece & 4369))//0001000100010001
+    {
+      piece = piece >> 1;
+      x--;
+    }
+  return (piece);
+}
+
+//checks for collision and places piece. under construction.
+//Works if map is 4x4 and pieces fit in order
 int	ft_placepiece(int piece, int map)
 {
-  if (!(piece & map))
+  int	i;
+  int	j;
+  int	temp_piece;
+  
+  i = 0;
+  j = 0;
+  temp_piece = piece;
+  while (j < 4)
     {
-      map = map | piece; 
+      while (i < 4)
+	{
+	  if (!(temp_piece & map))
+	    {
+	      map = map | temp_piece;
+	      return (map);
+	    }
+	  temp_piece = ft_shift_piece(temp_piece, 1, 0);//2 0
+	  i++;
+	}
+      i = 0;
+      j++;
+      temp_piece = ft_shift_piece(piece, 0, j);//2 0
     }
   return (map);
 }
@@ -79,8 +115,20 @@ int	main(void)
 	//	printf("\nLets boogie the piece to the top corner\n");
 	//	piece = ft_move_piece(piece);
 	//	ft_print_bin(piece, 16);
-	printf("\nNow place piece in map and print it \n");
+	printf("\nNow place pieceA in map and print it \n");
 	map = ft_placepiece(pieceA, map);
+	ft_print_bin(map, 16);
+	printf("\n");
+	printf("\nNow place pieceB in map and print it \n");
+	map = ft_placepiece(pieceB, map);
+	ft_print_bin(map, 16);
+	printf("\n");
+	printf("\nNow place pieceC in map and print it \n");
+	map = ft_placepiece(pieceC, map);
+	ft_print_bin(map, 16);
+	printf("\n");
+	printf("\nNow place pieceD in map and print it \n");
+	map = ft_placepiece(pieceD, map);
 	ft_print_bin(map, 16);
 	printf("\n");
 	return (0);
