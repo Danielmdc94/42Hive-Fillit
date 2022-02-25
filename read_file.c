@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/25 12:17:29 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/25 15:09:33 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,10 @@ static char	*isolate_piece(char *file_str, int tetriminos)
 			file_str++;
 		else
 		{
-			*piece = *file_str;
+			if (*file_str == '.')
+				*piece = '0';
+			if (*file_str == '#')
+				*piece = '1';
 			file_str++;
 			piece++;
 			i++;

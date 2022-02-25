@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_to_binary.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/25 15:29:19 by dpalacio         ###   ########.fr       */
+/*   Created: 2022/02/25 14:59:49 by dpalacio          #+#    #+#             */
+/*   Updated: 2022/02/25 15:29:12 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int argc, char **argv)
+void	str_to_int(char **file, int n_tet)
 {
-	char	**file;
-	int		i;
-	int		n_tet;
+	int	*pieces;
+	int	i;
 
 	i = 0;
-	n_tet = 0;
-	if (argc != 2)
-		error(1);
-	file = read_file(argv[1], &n_tet);
 	while (i < n_tet)
 	{
-		ft_putstr(file[i]);
-		ft_putchar('\n');
-		i++;
+		*pieces = ft_bittoint_base(*file, 2);
+		pieces++;
+		*file++;
 	}
-	ft_putstr("It kinda works\n");
-	return (0);
 }
