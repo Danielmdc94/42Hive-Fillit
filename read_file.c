@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/22 18:12:11 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:43:51 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static char	**store_pieces(char *file_str, int tetriminos)
 {
 	char	**file_pieces;
 
-	file_pieces = (char **)ft_memalloc(tetriminos + 1);
+	file_pieces = (char **)ft_memalloc((sizeof(char *)) * tetriminos + 1);
 	while (tetriminos > 0)
 	{
 		file_pieces[tetriminos - 1] = isolate_piece(file_str, tetriminos);
