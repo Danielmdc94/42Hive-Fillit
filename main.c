@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/22 18:12:13 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/25 12:28:34 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ int	main(int argc, char **argv)
 {
 	char	**file;
 	int		i;
+	int		n_tet;
 
 	i = 0;
+	n_tet = 0;
 	if (argc != 2)
 		error(1);
-	file = read_file(argv[1]);
-	while (i < 4)
+	file = read_file(argv[1], &n_tet);
+	while (i < n_tet)
 	{
 		ft_putstr(file[i]);
 		ft_putchar('\n');
