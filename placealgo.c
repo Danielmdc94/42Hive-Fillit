@@ -11,13 +11,34 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>//libft strnew and memalloc
+#include <string.h>//memset
 
 typedef struct	s_tetri{
   char	*string;
   int	id_int;
   char	id_char;
-
+  int	pos_x;
+  int	pos_y;
 }		t_tetri;
+
+void	*ft_memalloc(size_t size)//libft
+{
+  void	*p;
+
+  if (size == 0)
+    return (NULL);
+  p = malloc(size);
+  if (p == NULL)
+    return (NULL);
+  memset(p, 0, size);
+  return (p);
+}
+
+char	*ft_strnew(size_t size)//libft
+{
+  return ((char *)ft_memalloc(size));
+}
 
 //so far same as in binary.c
 int ft_print_bin(int int_piece, int bit_size)
@@ -66,7 +87,7 @@ int	ft_shift_piece(int piece, int x, int y)
 
 //checks for collision and places piece. under construction.
 //Works if map is 4x4 and pieces fit in order
-int	ft_placepiece(int piece, int map)
+int	ft_placepiece(t_tetri *tetri, int map)
 {
   int	i;
   int	j;
@@ -74,7 +95,7 @@ int	ft_placepiece(int piece, int map)
   
   i = 0;
   j = 0;
-  temp_piece = piece;
+  temp_piece = tetri->id_int;
   while (j < 4)
     {
       while (i < 4)
@@ -82,6 +103,9 @@ int	ft_placepiece(int piece, int map)
 	  if (!(temp_piece & map))
 	    {
 	      map = map | temp_piece;
+	      tetri->pos_x = i;
+	      tetri->pos_y = j;
+	      tetri->id_int = temp_piece;//---| x 0 y 0
 	      return (map);
 	    }
 	  temp_piece = ft_shift_piece(temp_piece, 1, 0);//2 0
@@ -89,16 +113,32 @@ int	ft_placepiece(int piece, int map)
 	}
       i = 0;
       j++;
-      temp_piece = ft_shift_piece(piece, 0, j);//2 0
+      temp_piece = ft_shift_piece(tetri->id_int, 0, j);//2 0
     }
   return (map);
 }
 
+/*
 t_tetri ft_stotetri(char *string, t_tetri tetri;)
 {
   tetri.string = string;
   tetri.id_int = ft_bitoi_base(string, 2);
   return (tetri);
+}
+*/
+
+char	*maptoletters(char *char_map, t_tetri tetri)
+{
+  int	i = 0;
+  //what if no map string yet, does it come for sure,
+  //or do we make it here?  if (*letter_map == NULL)
+  while (tetri.string[i])
+    {
+      if (tetri.string[i] == '1')
+	char_map[i] = tetri.id_char;
+      i++;
+    }
+  return (char_map);
 }
 
 int	main(void)
@@ -149,19 +189,35 @@ int	main(void)
   */
 
   int	map;
+  char	*char_map;
   t_tetri	A;
-  //  t_tetri	B;
+  t_tetri	B;
   //  t_tetri	C;
   //  t_tetri	D;
 
   map = 0;
+  char_map = ft_strnew(15);
+  memset(char_map, '0', 15);
   A.string = "1111000000000000";
   A.id_int = 61440;
   A.id_char = 'A';
+  B.string = "1000100011000000";
+  B.id_int = 35008;
+  B.id_char = 'B';
   ft_print_bin(A.id_int, 16);
-  printf("\nNow place pieceA in map and print it \n");
-  map = ft_placepiece(A.id_int, map);
+  printf("\n");
+  ft_print_bin(B.id_int, 16);
+  printf("\nNow place A in map and print it \n");
+  map = ft_placepiece(&A, map);
   ft_print_bin(map, 16);
   printf("\n");
+  printf("\nNow place B in map and print it \n");
+  map = ft_placepiece(&B, map);
+  printf("The value of B after placing in map is for string %s and for id_int %d\n", B.string, B.id_int);
+  ft_print_bin(map, 16);
+  printf("\n");
+  char_map = maptoletters(char_map, B);
+  printf("%s\n", char_map);
+  free(char_map);
   return (0);
 }
