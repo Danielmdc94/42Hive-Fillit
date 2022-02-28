@@ -12,6 +12,13 @@
 
 #include <stdio.h>
 
+typedef struct	s_tetri{
+  char	*string;
+  int	id_int;
+  char	id_char;
+
+}		t_tetri;
+
 //so far same as in binary.c
 int ft_print_bin(int int_piece, int bit_size)
 {
@@ -87,9 +94,16 @@ int	ft_placepiece(int piece, int map)
   return (map);
 }
 
+t_tetri ft_stotetri(char *string, t_tetri tetri;)
+{
+  tetri.string = string;
+  tetri.id_int = ft_bitoi_base(string, 2);
+  return (tetri);
+}
+
 int	main(void)
 {
-	int	pieceA;
+  /*	int	pieceA;
 	int	pieceB;
 	int	pieceC;
 	int	pieceD;
@@ -131,5 +145,23 @@ int	main(void)
 	map = ft_placepiece(pieceD, map);
 	ft_print_bin(map, 16);
 	printf("\n");
-	return (0);
+
+  */
+
+  int	map;
+  t_tetri	A;
+  //  t_tetri	B;
+  //  t_tetri	C;
+  //  t_tetri	D;
+
+  map = 0;
+  A.string = "1111000000000000";
+  A.id_int = 61440;
+  A.id_char = 'A';
+  ft_print_bin(A.id_int, 16);
+  printf("\nNow place pieceA in map and print it \n");
+  map = ft_placepiece(A.id_int, map);
+  ft_print_bin(map, 16);
+  printf("\n");
+  return (0);
 }
