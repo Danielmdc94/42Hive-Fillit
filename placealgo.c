@@ -14,6 +14,49 @@
 #include <stdlib.h>//libft strnew and memalloc
 #include <string.h>//memset
 
+int	ft_abs(int n)//satu
+{
+	if (n < 0)
+		return (-n);
+	else
+		return (n);
+}
+
+static int	is_negative(int value)//satu
+{
+	if (value < 0)
+		return (1);
+	else
+		return (0);
+}
+
+char	*ft_itoa_base(int value, int base)//satu
+{
+	char	*result;
+	char	*digits;
+	char	temp[32 + 1];
+	int		i;
+
+	if (base < 2 || base > 16)
+		return (NULL);
+	digits = "0123456789ABCDEF";
+	i = 32;
+	temp[i--] = '\0';
+	if (value == 0)
+		temp[i--] = '0';
+	while (value != 0)
+	{
+		temp[i--] = digits[ft_abs(value % base)];
+		value = value / base;
+	}
+	if (is_negative(value) && base == 10)
+		temp[i--] = '-';
+	result = (char *)malloc(32 - i + 1);
+	if (result == NULL)
+		return (NULL);
+	return (strcpy(result, &temp[i + 1]));
+}
+
 typedef struct	s_tetri{
   char	*string;
   int	id_int;
@@ -106,6 +149,12 @@ int	ft_placepiece(t_tetri *tetri, int map)
 	      tetri->pos_x = i;
 	      tetri->pos_y = j;
 	      tetri->id_int = temp_piece;//---| x 0 y 0
+	      /*	      printf("\nHere inside B is\n");
+	      ft_print_bin(temp_piece, 16);
+	      printf("\n");	      
+	      tetri->string = strdup(ft_itoa_base(temp_piece, 2));*/
+	      if (tetri->id_int == 'B')//hardcode to see if logic works FAIL
+		tetri->string = "0000100010001100";
 	      return (map);
 	    }
 	  temp_piece = ft_shift_piece(temp_piece, 1, 0);//2 0
@@ -216,6 +265,7 @@ int	main(void)
   printf("The value of B after placing in map is for string %s and for id_int %d\n", B.string, B.id_int);
   ft_print_bin(map, 16);
   printf("\n");
+  char_map = maptoletters(char_map, A);
   char_map = maptoletters(char_map, B);
   printf("%s\n", char_map);
   free(char_map);
