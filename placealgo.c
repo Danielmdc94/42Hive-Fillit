@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:00:00 by acastano          #+#    #+#             */
-/*   Updated: 2022/02/22 20:30:30 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/01 14:57:58 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,45 @@ char	*ft_strnew(size_t size)//libft
   return ((char *)ft_memalloc(size));
 }
 
-//so far same as in binary.c
+int ft_print_map(char *map)
+{
+//AAAA 0000 0000 0000
+//AAAA B000 B000 BB00
+  int i;
+
+  i = 0;
+  while (i < 16)
+  {
+	  if (i != 0 && i % 4 == 0)
+	  {
+		  printf("\n");
+	  }
+      else
+		  printf("%c", map[i]);
+      i++;
+  }
+  return (0);
+/*
+  int i;
+
+  i = 16 - 1;
+  while (i >= 0)
+  {
+      if (tetri.id_int & (1UL << i))
+		  printf("%c", tetri.id_char);
+      else
+		  printf(".");
+      if ((bit_size == 16) && (i % 4 == 0))
+		  printf("\n");
+      i--;
+  }
+  return (0);*/
+}
+
 int ft_print_bin(int int_piece, int bit_size)
 {
   int i;
-
+  
   i = bit_size - 1;
   while (i >= 0)
     {
@@ -99,6 +133,25 @@ int ft_print_bin(int int_piece, int bit_size)
 	printf("\n");
       i--;
     }
+  return (0);
+}
+
+//changed to print with tetris, not ints
+int ft_print_tetri(t_tetri tetri, int bit_size)
+{
+  int i;
+
+  i = bit_size - 1;
+  while (i >= 0)
+  {
+      if (tetri.id_int & (1UL << i))
+		  printf("%c", tetri.id_char);
+      else
+		  printf(".");
+      if ((bit_size == 16) && (i % 4 == 0))
+		  printf("\n");
+      i--;
+  }
   return (0);
 }
 
@@ -140,30 +193,30 @@ int	ft_placepiece(t_tetri *tetri, int map)
   j = 0;
   temp_piece = tetri->id_int;
   while (j < 4)
-    {
-      while (i < 4)
-	{
-	  if (!(temp_piece & map))
-	    {
-	      map = map | temp_piece;
-	      tetri->pos_x = i;
-	      tetri->pos_y = j;
-	      tetri->id_int = temp_piece;//---| x 0 y 0
-	      /*	      printf("\nHere inside B is\n");
-	      ft_print_bin(temp_piece, 16);
-	      printf("\n");	      
-	      tetri->string = strdup(ft_itoa_base(temp_piece, 2));*/
-	      if (tetri->id_int == 'B')//hardcode to see if logic works FAIL
-		tetri->string = "0000100010001100";
-	      return (map);
-	    }
-	  temp_piece = ft_shift_piece(temp_piece, 1, 0);//2 0
-	  i++;
-	}
-      i = 0;
-      j++;
-      temp_piece = ft_shift_piece(tetri->id_int, 0, j);//2 0
-    }
+  {
+	  while (i < 4)
+	  {
+		  if (!(temp_piece & map))
+		  {
+			  map = map | temp_piece;
+			  tetri->pos_x = i;
+			  tetri->pos_y = j;
+			  tetri->id_int = temp_piece;//---| x 0 y 0
+			  /*		  printf("\nHere inside B is\n");
+						  ft_print_bin(temp_piece, 16);
+						  printf("\n");		  
+						  tetri->string = strdup(ft_itoa_base(temp_piece, 2));*/
+			  if (tetri->id_int == 'B')//hardcode to see if logic works FAIL
+				  tetri->string = "0000100010001100";
+			  return (map);
+		  }
+		  temp_piece = ft_shift_piece(temp_piece, 1, 0);//2 0
+		  i++;
+	  }
+	  i = 0;
+	  j++;
+	  temp_piece = ft_shift_piece(tetri->id_int, 0, j);//2 0
+  }
   return (map);
 }
 
@@ -182,11 +235,11 @@ char	*maptoletters(char *char_map, t_tetri tetri)
   //what if no map string yet, does it come for sure,
   //or do we make it here?  if (*letter_map == NULL)
   while (tetri.string[i])
-    {
+  {
       if (tetri.string[i] == '1')
-	char_map[i] = tetri.id_char;
+		  char_map[i] = tetri.id_char;
       i++;
-    }
+  }
   return (char_map);
 }
 
@@ -223,7 +276,7 @@ int	main(void)
 	ft_print_bin(map, 16);
 	printf("\n");
 	printf("\nNow place pieceB in map and print it \n");
-	map = ft_placepiece(pieceB, map);
+har_map = maptoletters(char_map, A);	map = ft_placepiece(pieceB, map);
 	ft_print_bin(map, 16);
 	printf("\n");
 	printf("\nNow place pieceC in map and print it \n");
@@ -243,31 +296,35 @@ int	main(void)
   t_tetri	B;
   //  t_tetri	C;
   //  t_tetri	D;
-
+//A... A... AA.. ....
+//.... .... .... ....
+//A...A ...AA ..... .....
   map = 0;
   char_map = ft_strnew(15);
   memset(char_map, '0', 15);
-  A.string = "1111000000000000";
+  A.string = "1111000000000000";//make function that creates/updates all struct info?
   A.id_int = 61440;
   A.id_char = 'A';
   B.string = "1000100011000000";
   B.id_int = 35008;
   B.id_char = 'B';
-  ft_print_bin(A.id_int, 16);
+  ft_print_tetri(A, 16);
   printf("\n");
-  ft_print_bin(B.id_int, 16);
-  printf("\nNow place A in map and print it \n");
+  ft_print_tetri(B, 16);
+//  printf("\nNow place A in map and print it \n");
   map = ft_placepiece(&A, map);
-  ft_print_bin(map, 16);
-  printf("\n");
-  printf("\nNow place B in map and print it \n");
+//  ft_print_map(char_map);
+//  printf("\n");
+  printf("\nNow place B in map\n");
   map = ft_placepiece(&B, map);
-  printf("The value of B after placing in map is for string %s and for id_int %d\n", B.string, B.id_int);
+//  printf("The value of B after placing in map is for string %s and for id_int %d\n", B.string, B.id_int);
+  printf("The bit map after placing A and B:\n");
   ft_print_bin(map, 16);
   printf("\n");
   char_map = maptoletters(char_map, A);
   char_map = maptoletters(char_map, B);
-  printf("%s\n", char_map);
+  ft_print_map(char_map);
+//  printf("%s\n", char_map);
   free(char_map);
   return (0);
 }
