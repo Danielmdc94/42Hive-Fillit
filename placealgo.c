@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:00:00 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/01 14:57:58 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:56:32 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	*ft_strnew(size_t size)//libft
 
 int ft_print_map(char *map)
 {
+//0123 4567 8901 2345
 //AAAA 0000 0000 0000
 //AAAA B000 B000 BB00
   int i;
@@ -92,12 +93,9 @@ int ft_print_map(char *map)
   i = 0;
   while (i < 16)
   {
-	  if (i != 0 && i % 4 == 0)
-	  {
+	  printf("%c", map[i]);
+	  if (i != 0 && (i % 4 == 3))
 		  printf("\n");
-	  }
-      else
-		  printf("%c", map[i]);
       i++;
   }
   return (0);
@@ -234,23 +232,24 @@ char	*maptoletters(char *char_map, t_tetri tetri)
   int	i = 0;
   //what if no map string yet, does it come for sure,
   //or do we make it here?  if (*letter_map == NULL)
-  while (tetri.string[i])
+//AAAA .... .... ....
+//B... B... BB.. ....
+  char	*tetri_pos;
+
+  tetri_pos = ft_itoa_base(tetri.id_int, 2);
+  while (tetri_pos[i])
   {
-      if (tetri.string[i] == '1')
-		  char_map[i] = tetri.id_char;
+      if (tetri_pos[i] == '1')
+		  (char_map)[i] = tetri.id_char;
       i++;
   }
+  free(tetri_pos);
   return (char_map);
 }
 
 int	main(void)
 {
-  /*	int	pieceA;
-	int	pieceB;
-	int	pieceC;
-	int	pieceD;
-	int	map;
-
+/*
 	pieceA = 61440;//1111000000000000;
 	pieceB = 35008;//1000100011000000;
 	pieceC = 52224;//1100110000000000;
@@ -259,49 +258,16 @@ int	main(void)
 	//	pieceD = 4400;//0001000100110000;
 	map = 0;
 	//46, 71, 39, 275, not valid but good test 19
-	printf("\nLets print the pieces A B C D\n");
-	ft_print_bin(pieceA, 16);
-	printf("\n");
-	ft_print_bin(pieceB, 16);
-	printf("\n");
-	ft_print_bin(pieceC, 16);
-	printf("\n");
-	ft_print_bin(pieceD, 16);
-	printf("\n");
-	//	printf("\nLets boogie the piece to the top corner\n");
-	//	piece = ft_move_piece(piece);
-	//	ft_print_bin(piece, 16);
-	printf("\nNow place pieceA in map and print it \n");
-	map = ft_placepiece(pieceA, map);
-	ft_print_bin(map, 16);
-	printf("\n");
-	printf("\nNow place pieceB in map and print it \n");
-har_map = maptoletters(char_map, A);	map = ft_placepiece(pieceB, map);
-	ft_print_bin(map, 16);
-	printf("\n");
-	printf("\nNow place pieceC in map and print it \n");
-	map = ft_placepiece(pieceC, map);
-	ft_print_bin(map, 16);
-	printf("\n");
-	printf("\nNow place pieceD in map and print it \n");
-	map = ft_placepiece(pieceD, map);
-	ft_print_bin(map, 16);
-	printf("\n");
-
-  */
+*/
 
   int	map;
   char	*char_map;
   t_tetri	A;
   t_tetri	B;
-  //  t_tetri	C;
-  //  t_tetri	D;
-//A... A... AA.. ....
-//.... .... .... ....
-//A...A ...AA ..... .....
+  //  t_tetri	C;t_tetri	D;
   map = 0;
   char_map = ft_strnew(15);
-  memset(char_map, '0', 15);
+  memset(char_map, '.', 16);
   A.string = "1111000000000000";//make function that creates/updates all struct info?
   A.id_int = 61440;
   A.id_char = 'A';
@@ -311,20 +277,29 @@ har_map = maptoletters(char_map, A);	map = ft_placepiece(pieceB, map);
   ft_print_tetri(A, 16);
   printf("\n");
   ft_print_tetri(B, 16);
+
 //  printf("\nNow place A in map and print it \n");
   map = ft_placepiece(&A, map);
 //  ft_print_map(char_map);
 //  printf("\n");
-  printf("\nNow place B in map\n");
+//  printf("\nNow place B in map\n");
   map = ft_placepiece(&B, map);
 //  printf("The value of B after placing in map is for string %s and for id_int %d\n", B.string, B.id_int);
   printf("The bit map after placing A and B:\n");
   ft_print_bin(map, 16);
   printf("\n");
+
+  printf("The char_map after placing A:\n");
   char_map = maptoletters(char_map, A);
-  char_map = maptoletters(char_map, B);
+//  printf("\n%s\n", char_map);
   ft_print_map(char_map);
-//  printf("%s\n", char_map);
+//  printf("\nB piece is %s\n", B.string);
+//  printf("\nThe char_map after placing A and B:\n");
+//  char_map = maptoletters(char_map, B);     TO DO PROBLEM
+  printf("Char map printf\n%s\ncharmap printmap\n", char_map);
+  ft_print_map(char_map);
+  printf("\nft_print_bin map\n");
+  ft_print_bin(map, 16);
   free(char_map);
   return (0);
 }
