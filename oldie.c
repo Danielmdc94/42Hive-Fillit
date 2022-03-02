@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:00:00 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/02 16:01:23 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:56:32 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ char	*ft_itoa_base(int value, int base)//satu
 	return (strcpy(result, &temp[i + 1]));
 }
 
+typedef struct	s_tetri{
+  char	*string;
+  int	id_int;
+  char	id_char;
+  int	pos_x;
+  int	pos_y;
+}		t_tetri;
+
 void	*ft_memalloc(size_t size)//libft
 {
   void	*p;
@@ -75,24 +83,12 @@ char	*ft_strnew(size_t size)//libft
   return ((char *)ft_memalloc(size));
 }
 
-typedef struct	s_tetri{
-	char			*string;//string orig to top left
-  uint16_t		id_int;//int orig top left
-  uint16_t		id_int0;
-  uint16_t		id_int1;
-  uint16_t		id_int2;
-  uint16_t		id_int3;
-  char			id_char;
-  uint16_t		pos_x;
-  uint16_t		pos_y;
-}				t_tetri;
-
-uint16_t ft_print_map(char *map)
+int ft_print_map(char *map)
 {
 //0123 4567 8901 2345
 //AAAA 0000 0000 0000
 //AAAA B000 B000 BB00
-  uint16_t i;
+  int i;
 
   i = 0;
   while (i < 16)
@@ -120,9 +116,9 @@ uint16_t ft_print_map(char *map)
   return (0);*/
 }
 
-uint16_t ft_print_bin(uint16_t int_piece, uint16_t bit_size)
+int ft_print_bin(int int_piece, int bit_size)
 {
-  int16_t i;
+  int i;
   
   i = bit_size - 1;
   while (i >= 0)
@@ -139,9 +135,9 @@ uint16_t ft_print_bin(uint16_t int_piece, uint16_t bit_size)
 }
 
 //changed to print with tetris, not ints
-int ft_print_tetri(t_tetri tetri, uint16_t bit_size)
+int ft_print_tetri(t_tetri tetri, int bit_size)
 {
-  uint16_t i;
+  int i;
 
   i = bit_size - 1;
   while (i >= 0)
@@ -158,7 +154,7 @@ int ft_print_tetri(t_tetri tetri, uint16_t bit_size)
 }
 
 //so far same as in binary.c
-uint16_t	ft_move_piece(uint16_t piece)
+int	ft_move_piece(int piece)
 {
   while (!(piece & 61440))//1111000000000000
     piece = piece << 4;
@@ -168,7 +164,7 @@ uint16_t	ft_move_piece(uint16_t piece)
 }
 
 //moves piece as many positions as x and y say
-uint16_t	ft_shift_piece(uint16_t piece, uint16_t x, uint16_t y)
+int	ft_shift_piece(int piece, int x, int y)
 {
   while (y > 0 && !(piece & 15))//0000000000001111
     {
@@ -185,11 +181,11 @@ uint16_t	ft_shift_piece(uint16_t piece, uint16_t x, uint16_t y)
 
 //checks for collision and places piece. under construction.
 //Works if map is 4x4 and pieces fit in order
-uint16_t	ft_placepiece(t_tetri *tetri, uint16_t map)
+int	ft_placepiece(t_tetri *tetri, int map)
 {
-  uint16_t	i;
-  uint16_t	j;
-  uint16_t	temp_piece;
+  int	i;
+  int	j;
+  int	temp_piece;
   
   i = 0;
   j = 0;
@@ -204,7 +200,11 @@ uint16_t	ft_placepiece(t_tetri *tetri, uint16_t map)
 			  tetri->pos_x = i;
 			  tetri->pos_y = j;
 			  tetri->id_int = temp_piece;//---| x 0 y 0
-			  if (tetri->id_int == 'B')
+			  /*		  printf("\nHere inside B is\n");
+						  ft_print_bin(temp_piece, 16);
+						  printf("\n");		  
+						  tetri->string = strdup(ft_itoa_base(temp_piece, 2));*/
+			  if (tetri->id_int == 'B')//hardcode to see if logic works FAIL
 				  tetri->string = "0000100010001100";
 			  return (map);
 		  }
@@ -229,14 +229,14 @@ t_tetri ft_stotetri(char *string, t_tetri tetri;)
 
 char	*maptoletters(char *char_map, t_tetri tetri)
 {
-  uint16_t	i = 0;
+  int	i = 0;
   //what if no map string yet, does it come for sure,
   //or do we make it here?  if (*letter_map == NULL)
 //AAAA .... .... ....
 //B... B... BB.. ....
   char	*tetri_pos;
 
-  tetri_pos = ft_itoa_base(tetri.id_uint16_t, 2);
+  tetri_pos = ft_itoa_base(tetri.id_int, 2);
   while (tetri_pos[i])
   {
       if (tetri_pos[i] == '1')
@@ -260,21 +260,12 @@ int	main(void)
 	//46, 71, 39, 275, not valid but good test 19
 */
 
-  uint16_t	map[13];
+  int	map;
   char	*char_map;
   t_tetri	A;
   t_tetri	B;
-
-  while (i < 13)
-  {
-	  if (i < 4)
-		  map[i] = 4095;
-	  map[i] = 65535;//0000 1111 1111 1111   max 65535
-	  i++;
-  }
-111001101 1111111
-000000000 1000000
-111001101 0111111 XOR
+  //  t_tetri	C;t_tetri	D;
+  map = 0;
   char_map = ft_strnew(15);
   memset(char_map, '.', 16);
   A.string = "1111000000000000";//make function that creates/updates all struct info?
