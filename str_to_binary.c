@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:59:49 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/28 19:58:13 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:08:20 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int ft_bitoint_base(char *binary_string, int base);
 int ft_positive_pow(int x, int y);
+int ft_move_piece(int piece);
 
 int	*str_to_int(char **file, int n_tet)
 {
@@ -25,6 +26,7 @@ int	*str_to_int(char **file, int n_tet)
 	while (i < n_tet)
 	{
 		*pieces = ft_bitoint_base(*file, 2);
+		*pieces = ft_move_piece(*pieces);
 		pieces++;
 		file++;
 		i++;
@@ -65,4 +67,13 @@ int ft_positive_pow(int x, int y)
 		y--;
 	}
 	return (res);
+}
+
+int	ft_move_piece(int piece)
+{
+  while (!(piece & 61440))//1111000000000000
+    piece = piece << 4;
+  while (!(piece & 34952))//1000100010001000
+    piece = (piece << 1);
+  return (piece);
 }
