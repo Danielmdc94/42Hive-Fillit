@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/01 15:08:38 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/02 12:28:44 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //open()
 # include <fcntl.h>
 
-typedef struct	s_tetri{
+typedef struct s_tetri{
 	char	*string;
 	int		id_int;
 	char	id_char;
