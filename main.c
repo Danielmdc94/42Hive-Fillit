@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/02 13:41:38 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:36:54 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	char	**file;
 	int		i;
 	int		n_tet;
-	int		*piece_id;
+	uint16_t		*piece_id;
 	t_tetri	*tetri;
 
 	i = 0;
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	tetri = (t_tetri *)ft_memalloc(sizeof(t_tetri) * n_tet + sizeof(t_tetri *));
 	while (i < n_tet)
 	{
-		*tetri = *(t_tetri *)ft_memalloc(sizeof(t_tetri));
+	//	*tetri = *(t_tetri *)ft_memalloc(sizeof(t_tetri));
 		(*tetri).id_int = *piece_id;
 		(*tetri).string = file[i];
 		(*tetri).id_char = 'A' + i;

@@ -6,22 +6,22 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:59:49 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/02 12:29:04 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:41:26 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_bitoint_base(char *binary_string, int base);
-int	ft_positive_pow(int x, int y);
-int	ft_move_piece(int piece);
+int			ft_bitoint_base(char *binary_string, int base);
+int			ft_positive_pow(int x, int y);
+uint16_t	ft_move_piece(uint16_t piece);
 
-int	*str_to_int(char **file, int n_tet)
+uint16_t	*str_to_int(char **file, int n_tet)
 {
-	int	*pieces;
-	int	i;
+	uint16_t	*pieces;
+	int			i;
 
-	pieces = (int *)ft_memalloc(sizeof(int) * n_tet);
+	pieces = (uint16_t *)ft_memalloc(sizeof(int) * n_tet);
 	i = 0;
 	while (i < n_tet)
 	{
@@ -68,7 +68,7 @@ int	ft_positive_pow(int x, int y)
 	return (res);
 }
 
-int	ft_move_piece(int piece)
+uint16_t	ft_move_piece(uint16_t piece)
 {
 	while (!(piece & 61440)) //1111000000000000
 		piece = piece << 4;
