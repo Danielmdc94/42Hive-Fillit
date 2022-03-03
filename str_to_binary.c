@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:59:49 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/02 14:41:26 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/03 13:32:29 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int	ft_positive_pow(int x, int y)
 
 uint16_t	ft_move_piece(uint16_t piece)
 {
-	while (!(piece & 61440)) //1111000000000000
+	while (!(piece & 61440))
 		piece = piece << 4;
-	while (!(piece & 34952)) //1000100010001000
+	while (!(piece & 34952))
 		piece = (piece << 1);
 	return (piece);
 }
