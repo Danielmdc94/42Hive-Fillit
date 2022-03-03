@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/02 14:36:54 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/03 12:30:04 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ int	main(int argc, char **argv)
 	tetri = (t_tetri *)ft_memalloc(sizeof(t_tetri) * n_tet + sizeof(t_tetri *));
 	while (i < n_tet)
 	{
-	//	*tetri = *(t_tetri *)ft_memalloc(sizeof(t_tetri));
 		(*tetri).id_int = *piece_id;
+		(*tetri).id_int0 = *piece_id & 61440;
+		(*tetri).id_int1 = (*piece_id << 4) & 61440;
+		(*tetri).id_int2 = (*piece_id << 8) & 61440;
+		(*tetri).id_int3 = (*piece_id << 12) & 61440;
 		(*tetri).string = file[i];
 		(*tetri).id_char = 'A' + i;
 		piece_id++;
@@ -62,13 +65,22 @@ int	main(int argc, char **argv)
 //Printing for testing purposes:
 	while (i < n_tet)
 	{
-		ft_putstr((*tetri).string);
-		ft_putstr("\t->\t");
-		ft_putnbr((*tetri).id_int);
-		ft_putstr("\t->\t");
-		ft_print_bin((*tetri).id_int, 16);
-		ft_putstr("\t->\t");
-		ft_putchar((*tetri).id_char);
+		ft_print_bin((*tetri).id_int0, 16);
+		ft_putchar('\n');
+		ft_print_bin((*tetri).id_int1, 16);
+		ft_putchar('\n');
+		ft_print_bin((*tetri).id_int2, 16);
+		ft_putchar('\n');
+		ft_print_bin((*tetri).id_int3, 16);
+		ft_putchar('\n');
+
+//		ft_putstr((*tetri).string);
+//		ft_putstr("\t->\t");
+//		ft_putnbr((*tetri).id_int);
+//		ft_putstr("\t->\t");
+//		ft_print_bin((*tetri).id_int, 16);
+//		ft_putstr("\t->\t");
+//		ft_putchar((*tetri).id_char);
 		ft_putchar('\n');
 		tetri++;
 		i++;
