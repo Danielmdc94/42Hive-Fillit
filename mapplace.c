@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   mapplace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 13:54:30 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/04 11:13:40 by acastano         ###   ########.fr       */
+/*   Created: 2022/03/04 11:16:00 by acastano          #+#    #+#             */
+/*   Updated: 2022/03/04 12:20:22 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,43 +76,6 @@ uint16_t	ft_shift_piece(uint16_t piece, uint16_t x, uint16_t y)
 */
 
 /*
-//checks for collision and places piece. under construction.
-//Works if map is 4x4 and pieces fit in order
-uint16_t	ft_placepiece(t_tetri *tetri, uint16_t map)
-{
-  uint16_t	i;
-  uint16_t	j;
-  uint16_t	temp_piece;
-  
-  i = 0;
-  j = 0;
-  temp_piece = tetri->id_int;
-  while (j < 4)
-  {
-	  while (i < 4)
-	  {
-		  if (!(temp_piece & map))
-		  {
-			  map = map | temp_piece;
-			  tetri->pos_x = i;
-			  tetri->pos_y = j;
-			  tetri->id_int = temp_piece;//---| x 0 y 0
-			  if (tetri->id_int == 'B')
-				  tetri->string = "0000100010001100";
-			  return (map);
-		  }
-		  temp_piece = ft_shift_piece(temp_piece, 1, 0);//2 0
-		  i++;
-	  }
-	  i = 0;
-	  j++;
-	  temp_piece = ft_shift_piece(tetri->id_int, 0, j);//2 0
-  }
-  return (map);
-}
-*/
-
-/*
 t_tetri ft_stotetri(char *string, t_tetri tetri;)
 {
   tetri.string = string;
@@ -121,6 +84,7 @@ t_tetri ft_stotetri(char *string, t_tetri tetri;)
 }
 */
 
+//same map.c
 uint16_t	ft_map_size(uint16_t tetriminos)
 {
 	uint16_t	bits;
@@ -133,6 +97,7 @@ uint16_t	ft_map_size(uint16_t tetriminos)
 	return (size);
 }
 
+//same map.c
 uint16_t	ft_init_map(uint16_t *map, uint16_t i)
 {
 	uint16_t	x;
@@ -154,6 +119,7 @@ uint16_t	ft_init_map(uint16_t *map, uint16_t i)
 	return (0);
 }
 
+//same map.c
 uint16_t ft_print_bin_map_line(uint16_t map_line, uint16_t bit_size)
 {
   int16_t i;
@@ -172,6 +138,7 @@ uint16_t ft_print_bin_map_line(uint16_t map_line, uint16_t bit_size)
   return (0);
 }
 
+//same map.c
 uint16_t ft_print_bin_map(uint16_t *map)
 {
   int16_t x;
@@ -208,6 +175,89 @@ char	*maptoletters(char *char_map, t_tetri tetri)
 }
 */
 
+uint16_t	ft_line_collision(uint16_t map_line, uint16_t tetri_line)
+{
+	if (map_line & tetri_line)
+		return (1);
+	return (0);//no collision
+}
+
+uint16_t	ft_tetri_collision(uint16_t *map, t_tetri *tetri)
+{
+	if ()
+		return (1);
+	return (0);
+}
+
+uint16_t	ft_is_collision(uint16_t *map, uint16_t map_size, t_tetri *tetri)
+{
+  uint16_t	x;
+  uint16_t	y;
+  t_tetri	*temp;//tetri
+
+  temp.id_char = tetri.id_char;
+  temp.string = ft_strdup(tetri.string);
+  temp.id_int = tetri.id_int;
+  temp.id_int0 = tetri.id_int0;
+  temp.id_int1 = tetri.id_int1;
+  temp.id_int2 = tetri.id_int2;
+  temp.id_int3 = tetri.id_int3;
+  temp.pos_x = tetri.pos_x;
+  temp.pos_y = tetri.pos_y;
+  
+  x = 0;
+  y = 0;
+  while (y < map_size)
+  {
+	  while (x < map_size)
+	  {
+		  if (map[y] & temp.id_int0)
+			  return (1);
+		  i++;
+	  }
+	  i = 0;
+	  j++;
+	  temp_piece = ft_shift_piece(tetri->id_int, 0, j);//2 0
+  }
+  free(temp.string);
+  return (0);
+}
+
+//checks for collision and places piece. under construction.
+//Works if map is 4x4 and pieces fit in order
+uint16_t	ft_placepiece(uint16_t *map, t_tetri *tetri)
+{
+  uint16_t	x;
+  uint16_t	y;
+  uint16_t	temp_piece;
+  
+  x = 0;
+  y = 0;
+  temp_piece = tetri->id_int;
+  while (y < 4)
+  {
+	  while (x < 4)
+	  {
+		  if (!(temp_piece & map))
+		  {
+			  map = map | temp_piece;
+			  tetri->pos_x = x;
+			  tetri->pos_y = y;
+			  tetri->id_int = temp_piece;//---| x 0 y 0
+			  if (tetri->id_int == 'B')
+				  tetri->string = "0000100010001100";
+			  return (map);
+		  }
+		  temp_piece = ft_shift_piece(temp_piece, 1, 0);//2 0
+		  x++;
+	  }
+	  x = 0;
+	  y++;
+	  temp_piece = ft_shift_piece(tetri->id_int, 0, y);//2 0
+  }
+  return (map);
+}
+
 int	main(void)
 {
 /*
@@ -221,10 +271,20 @@ int	main(void)
 	//46, 71, 39, 275, not valid but good test 19
 */
 
-  uint16_t	map[13];
-  uint16_t	num_tetriminos;//get from Daniel
+	t_tetri	A;
+	uint16_t	map[13];
+	uint16_t	num_tetriminos;//get from Daniel
 
-  num_tetriminos = 5;
+  num_tetriminos = 1;
+  A.id_char = 'A';
+  A.string = "1111000000000000";
+  A.id_int = 61440;
+  A.id_int0 = A.id_int & 61440;//F000
+  A.id_int1 = A.id_int & 3840;//F00
+  A.id_int2 = A.id_int & 240;//F0
+  A.id_int3 = A.id_int & 15;//F
+  A.pos_x = 0;
+  A.pos_y = 0;
 //  char	*char_map;
 //  char_map = ft_strnew(15);
 //  memset(char_map, '.', 16);
