@@ -6,13 +6,11 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/03 14:51:40 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:58:28 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void	valid_tet(uint16_t tetri_id);
 
 int	ft_print_bin(int int_piece, int bit_size)
 {
