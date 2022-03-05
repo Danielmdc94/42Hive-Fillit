@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/09 16:00:03 by acastano          #+#    #+#             */
-/*   Updated: 2022/02/21 21:37:33 by acastano         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 //#include "./libft/libft.h"
 #include <stdio.h>
@@ -84,14 +73,6 @@ int	ft_move_piece(int piece)
     piece = (piece << 1);
   return (piece);
 }
-
-/*
-int	ft_is_collision(int piece, int map)
-{
-	if ()
-	return (0);
-}
-*/
 
 int	main(void)
 {
