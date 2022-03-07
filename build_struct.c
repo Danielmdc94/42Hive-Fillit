@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/07 17:38:00 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/07 18:26:40 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ void	ft_print_tetri(t_tetri tetri, u_int16_t bit_size)//TO DO: erase
   while (i >= 0)
     {
       if (tetri.id_int & (1UL << i))
-	printf("%c", tetri.id_char);
+	ft_putchar(tetri.id_char);
       else
-	printf(".");
+	ft_putchar('.');
       if ((bit_size == 16) && (i % 4 == 0))
-	printf("\n");
+	ft_putchar('\n');
       i--;
     }
 }
@@ -93,44 +93,44 @@ void	ft_print_tetri_16(t_tetri tetri)//TO DO: erase
   while (i >= 0)
     {
       if (tetri.id_int0 & (1UL << i))
-	printf("%c", tetri.id_char);
+	ft_putchar(tetri.id_char);
       else
-	printf(".");
+	ft_putchar('.');
       if (i % 16 == 0)
-	printf("\n");
+	ft_putchar('\n');
       i--;
     }
   i = 15;
   while (i >= 0)
     {
       if (tetri.id_int1 & (1UL << i))
-	printf("%c", tetri.id_char);
+	ft_putchar(tetri.id_char);
       else
-	printf(".");
+	ft_putchar('.');
       if (i % 16 == 0)
-	printf("\n");
+	ft_putchar('\n');
       i--;
     }
   i = 15;
   while (i >= 0)
     {
       if (tetri.id_int2 & (1UL << i))
-	printf("%c", tetri.id_char);
+	ft_putchar(tetri.id_char);
       else
-	printf(".");
+	ft_putchar('.');
       if (i % 16 == 0)
-	printf("\n");
+	ft_putchar('\n');
       i--;
     }
   i = 15;
   while (i >= 0)
     {
       if (tetri.id_int3 & (1UL << i))
-	printf("%c", tetri.id_char);
+	ft_putchar(tetri.id_char);
       else
-	printf(".");
+	ft_putchar('.');
       if (i % 16 == 0)
-	printf("\n");
+	ft_putchar('\n');
       i--;
     }
 }

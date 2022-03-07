@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/07 17:36:29 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/07 18:19:39 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ u_int16_t	ft_shift_piece_x(u_int16_t *tetri, u_int16_t x);
 
 //map.c
 u_int16_t	ft_map_size(u_int16_t tetriminos);
-u_int16_t	ft_init_map(u_int16_t *map, u_int16_t i);
+//u_int16_t	ft_init_map(u_int16_t *map, u_int16_t i);
 void ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
 void ft_print_bin_map(u_int16_t *map);
 
