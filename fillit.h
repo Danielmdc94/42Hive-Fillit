@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/03 14:48:02 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:48:25 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ char		**read_file(char *file, int *n_tet);
 uint16_t	*str_to_int(char **file, int n_tet);
 void	build_struct(int n_tet, char **file,
 		uint16_t *piece_id, t_tetri *tetri);
+uint16_t	*map_gen(uint16_t *map, int n_tet);
 
 #endif
