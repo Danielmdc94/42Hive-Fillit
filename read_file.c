@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/22 18:12:11 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/02/28 19:32:33 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*isolate_piece(char *file_str, int tetriminos);
  * Returns the string containing the file once it has been validated.
  */
 
-char	**read_file(char *file)
+char	**read_file(char *file, int *n_tet)
 {
 	int		fd;
 	size_t	r_bytes;
@@ -40,6 +40,7 @@ char	**read_file(char *file)
 	if ((r_bytes + 1) % 21 != 0 || r_bytes == 0)
 		error(0);
 	tetriminos = (r_bytes + 1) / 21;
+	*n_tet = tetriminos;
 	file_str = ft_strdup(buff);
 	validate_format(file_str, tetriminos);
 	return (store_pieces(file_str, tetriminos));
@@ -68,7 +69,7 @@ static char	*validate_format(char *file_str, int tetriminos)
 }
 
 /*
- * check_tet() takes the str and the index we currently are.
+ * check_tet() takes the str and the index we currently are in.
  * It checks that only valid characters exist and \n are in place.
  * Returns the index where validate_format() can continue.
  */
@@ -108,7 +109,7 @@ static char	**store_pieces(char *file_str, int tetriminos)
 {
 	char	**file_pieces;
 
-	file_pieces = (char **)ft_memalloc(tetriminos + 1);
+	file_pieces = (char **)ft_memalloc((sizeof(char *)) * tetriminos + 1);
 	while (tetriminos > 0)
 	{
 		file_pieces[tetriminos - 1] = isolate_piece(file_str, tetriminos);
@@ -118,7 +119,7 @@ static char	**store_pieces(char *file_str, int tetriminos)
 }
 
 /*
- * isolate_pieces() takes the str that holds the file and the number of tetriminos.
+ * isolate_pieces() takes the str that holds the file and the No of tetriminos.
  * It creates a str for the current array element in store_pieces.
  * Returns said str.
  */
@@ -137,7 +138,10 @@ static char	*isolate_piece(char *file_str, int tetriminos)
 			file_str++;
 		else
 		{
-			*piece = *file_str;
+			if (*file_str == '.')
+				*piece = '0';
+			if (*file_str == '#')
+				*piece = '1';
 			file_str++;
 			piece++;
 			i++;
