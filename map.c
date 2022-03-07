@@ -2,14 +2,14 @@
 
 #include "fillit.h"
 
-void		ft_init_map(uint16_t *map, uint16_t map_size);
-uint16_t	ft_map_size(uint16_t n_tet);
-void		ft_print_bin_map(uint16_t *map);
-void		ft_print_bin_map_line(uint16_t map_line, uint16_t bit_size);
+void		ft_init_map(u_int16_t *map, u_int16_t map_size);
+u_int16_t	ft_map_size(u_int16_t n_tet);
+void		ft_print_bin_map(u_int16_t *map);
+void		ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
 
-uint16_t	*map_gen(uint16_t *map, int n_tet)
+u_int16_t	*map_gen(u_int16_t *map, int n_tet)
 {
-	uint16_t	x;
+	u_int16_t	x;
 
 	x = 0;
 	ft_init_map(map, ft_map_size(n_tet));
@@ -18,9 +18,9 @@ uint16_t	*map_gen(uint16_t *map, int n_tet)
 	return (map);
 }
 	
-void	ft_init_map(uint16_t *map, uint16_t map_size)
+void	ft_init_map(u_int16_t *map, u_int16_t map_size)
 {
-	uint16_t	x;
+	u_int16_t	x;
 	
 	x = 0;
 	if (map_size > 13)
@@ -38,10 +38,10 @@ void	ft_init_map(uint16_t *map, uint16_t map_size)
 	}
 }
 
-uint16_t    ft_map_size(uint16_t n_tet)
+u_int16_t    ft_map_size(u_int16_t n_tet)
 {
-	uint16_t	bits;
-	uint16_t	size;
+	u_int16_t	bits;
+	u_int16_t	size;
 
 	bits = n_tet * 4;
 	size = 4;
@@ -50,9 +50,9 @@ uint16_t    ft_map_size(uint16_t n_tet)
 	return (size);
 }
 //From here is to print the map, testing purpose only
-void	ft_print_bin_map(uint16_t *map)
+void	ft_print_bin_map(u_int16_t *map)
 {
-	uint16_t x;
+	u_int16_t x;
 
 	x = 0;
 	while (x < 13)
@@ -62,7 +62,7 @@ void	ft_print_bin_map(uint16_t *map)
 	}
 }
 
-void	ft_print_bin_map_line(uint16_t map_line, uint16_t bit_size)
+void	ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size)
 {
 	int16_t i;
 

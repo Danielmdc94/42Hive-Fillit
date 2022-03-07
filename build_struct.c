@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/03 14:52:04 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/07 17:38:00 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ void	build_struct(int n_tet, char **file,
 	}
 }
 
+void	ft_update_tetri(t_tetri *tetri, u_int16_t new_id)
+{
+  //  tetri.id_char = 'E';
+  //  tetri.string = "1000100010001000";
+  tetri->id_int = new_id;
+  tetri->id_int0 = new_id & 61440;//F000
+  tetri->id_int1 = (new_id & 3840) << 4;//F00
+  tetri->id_int2 = (new_id & 240) << 8;//F0
+  tetri->id_int3 = (new_id & 15) << 12;//F
+  //  tetri.pos_x = 0;
+  //  tetri.pos_y = 0;
+}
+
 void	valid_tet(uint16_t tetri_id)
 {
 	int				i;
@@ -52,4 +65,72 @@ void	valid_tet(uint16_t tetri_id)
 	}
 	if (valid_tet[i] != tetri_id)
 		error(0);
+}
+
+//changed to print with tetris, not ints
+void	ft_print_tetri(t_tetri tetri, u_int16_t bit_size)//TO DO: erase
+{
+  int i;
+
+  i = bit_size - 1;
+  while (i >= 0)
+    {
+      if (tetri.id_int & (1UL << i))
+	printf("%c", tetri.id_char);
+      else
+	printf(".");
+      if ((bit_size == 16) && (i % 4 == 0))
+	printf("\n");
+      i--;
+    }
+}
+
+void	ft_print_tetri_16(t_tetri tetri)//TO DO: erase
+{
+  int i;
+
+  i = 15;
+  while (i >= 0)
+    {
+      if (tetri.id_int0 & (1UL << i))
+	printf("%c", tetri.id_char);
+      else
+	printf(".");
+      if (i % 16 == 0)
+	printf("\n");
+      i--;
+    }
+  i = 15;
+  while (i >= 0)
+    {
+      if (tetri.id_int1 & (1UL << i))
+	printf("%c", tetri.id_char);
+      else
+	printf(".");
+      if (i % 16 == 0)
+	printf("\n");
+      i--;
+    }
+  i = 15;
+  while (i >= 0)
+    {
+      if (tetri.id_int2 & (1UL << i))
+	printf("%c", tetri.id_char);
+      else
+	printf(".");
+      if (i % 16 == 0)
+	printf("\n");
+      i--;
+    }
+  i = 15;
+  while (i >= 0)
+    {
+      if (tetri.id_int3 & (1UL << i))
+	printf("%c", tetri.id_char);
+      else
+	printf(".");
+      if (i % 16 == 0)
+	printf("\n");
+      i--;
+    }
 }
