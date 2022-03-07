@@ -4,22 +4,6 @@
 #include <stdlib.h>//libft strnew and memalloc
 #include <string.h>//memset
 
-/*
-//moves piece x. OLD
-u_int16_t	ft_shift_piece_x(t_tetri piece, u_int16_t x)
-{
-  while (x > 0)
-    {
-      if (piece & 4369)//0001000100010001
-	return (1);
-      piece = piece >> 1;
-      x--;
-    }
-  return (1);
-}
-*/
-
-//works
 u_int16_t	ft_line_collision(u_int16_t map_line, u_int16_t tetri_line)
 {
   if (map_line & tetri_line)
@@ -27,51 +11,12 @@ u_int16_t	ft_line_collision(u_int16_t map_line, u_int16_t tetri_line)
   return (0);//no collision
 }
 
-//works
 u_int16_t	ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, u_int16_t pos_y)
 {
-  if (ft_line_collision(map[pos_y], tetri.id_int0) || ft_line_collision(map[(pos_y + 1)], tetri.id_int1) || ft_line_collision(map[pos_y + 2], tetri.id_int2) || ft_line_collision(map[pos_y + 3], tetri.id_int3))
+  if (pos_y > 12 || ft_line_collision(map[pos_y], tetri.id_int0) || ft_line_collision(map[(pos_y + 1)], tetri.id_int1) || ft_line_collision(map[pos_y + 2], tetri.id_int2) || ft_line_collision(map[pos_y + 3], tetri.id_int3))
     return (1);
   return (0);
 }
-
-//NOT WORKING
-//moves piece as many positions as x says
-//ret: 0 if no shift, 1 if shift
-u_int16_t	ft_shift_line(u_int16_t *tetri_line, u_int16_t x)
-{
-  u_int16_t	temp;
-
-  temp = *tetri_line;
-  if (x > 0)
-    {
-      temp = temp >> x;
-      if ((temp & 4095))//0000 1111 1111 1111
-	return (0);
-    }
-  *tetri_line = temp;
-  //  printf("tetri_line %d\n", *tetri_line);
-  return (1);
-}
-
-/*compiler complain
-u_int16_t	ft_shift_piece_x(u_int16_t *tetri, u_int16_t x)
-{
-  //  u_int16_t	*temp;
-
-  //  temp = *tetri_line;
-  if ((tetri.id_int & 4369) == 0)//0001000100010001
-  if (ft_shift_line(tetri.id_int0, x) && ft_shift_line(tetri.id_int1, x) && ft_shift_line(tetri.id_int2, x) && ft_shift_line(tetri.id_int3, x))
-    {
-      temp = temp >> x;
-      if ((temp & 4095))//0000 1111 1111 1111
-	return (0);
-    }
-  *tetri_line = temp;
-  printf("tetri_line %d\n", *tetri_line);
-  return (1);
-}
-*/
 
 u_int16_t	ft_collision_xy(u_int16_t *map, t_tetri tetri, u_int16_t pos_x, u_int16_t pos_y)
 {
@@ -96,17 +41,19 @@ u_int16_t	ft_collision_xy(u_int16_t *map, t_tetri tetri, u_int16_t pos_x, u_int1
     }
     free(temp.string);*/
   //  ft_print_tetri_16(tetri);
-  if (pos_x > 0)
+
+	if (pos_y > 12 || pos_x > 12)
+		return (1);
+	if (pos_x > 0)
     {
-      tetri.id_int0 = (tetri.id_int0 >> pos_x);
-      tetri.id_int1 = (tetri.id_int1 >> pos_x);
-      tetri.id_int2 = (tetri.id_int2 >> pos_x);
-      tetri.id_int3 = (tetri.id_int3 >> pos_x);
-      //      ft_print_tetri_16(tetri);
+		tetri.id_int0 = (tetri.id_int0 >> pos_x);
+		tetri.id_int1 = (tetri.id_int1 >> pos_x);
+		tetri.id_int2 = (tetri.id_int2 >> pos_x);
+		tetri.id_int3 = (tetri.id_int3 >> pos_x);
     }
-  if (ft_tetri_collision_y(map, tetri, pos_y) == 0)
-    return (0);
-  return (1);
+	if (ft_tetri_collision_y(map, tetri, pos_y) == 0)
+		return (0);
+	return (1);
 }
 
 /*

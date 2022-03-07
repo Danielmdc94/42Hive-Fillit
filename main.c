@@ -5,8 +5,9 @@ int	main(void)
 {
   t_tetri	A;
   t_tetri	E;
+  t_tetri	L;
   u_int16_t	map[13];
-  u_int16_t	num_tetriminos = 2;//get from Daniel
+  u_int16_t	num_tetriminos = 26;//get from Daniel
 
   
   A.id_char = 'A';
@@ -28,9 +29,18 @@ int	main(void)
   E.id_int3 = (E.id_int & 15) << 12;//F
   E.pos_x = 0;
   E.pos_y = 0;
+
+  L.id_char = 'L';
+  L.string = "1000100011000000";
+  L.id_int = 35008;
+  L.id_int0 = (L.id_int & 61440);//F000
+  L.id_int1 = (L.id_int & 3840) << 4;//F00
+  L.id_int2 = (L.id_int & 240) << 8;//F0
+  L.id_int3 = (L.id_int & 15) << 12;//F
+  L.pos_x = 0;
+  L.pos_y = 0;
   
   ft_print_tetri(A, 16);
-  ft_print_tetri(E, 16);
   
   //  u_int16_t	x = 0;
   ft_init_map(map, ft_map_size(num_tetriminos));
@@ -80,46 +90,83 @@ int	main(void)
   //  printf("E.id_int0 is %d\n", E.id_int0);
   //  ft_print_tetri(E, 16);
 
-  printf("\nCollisions for A at y is expect : result\n");
-  printf("Collision at 0 is 0 : %d\n", ft_tetri_collision_y(map, A, 0));
-  printf("Collision at 1 is 0 : %d\n", ft_tetri_collision_y(map, A, 1));
-  printf("Collision at 2 is 0 : %d\n", ft_tetri_collision_y(map, A, 2));
-  printf("Collision at 3 is 0 : %d\n", ft_tetri_collision_y(map, A, 3));
-  printf("Collision at 4 is 1 : %d\n", ft_tetri_collision_y(map, A, 4));
-  printf("Collision at 12 is 1 : %d\n", ft_tetri_collision_y(map, A, 12));
-  printf("Collision at 13 is 1 : %d\n", ft_tetri_collision_y(map, A, 13));
-  printf("Collision at 14 is 1 : %d\n", ft_tetri_collision_y(map, A, 14));
+  printf("\nCollisions for A at y is\n");
+  printf("Collision at 0 is %d\n", ft_tetri_collision_y(map, A, 0));
+  printf("Collision at 1 is %d\n", ft_tetri_collision_y(map, A, 1));
+  printf("Collision at 2 is %d\n", ft_tetri_collision_y(map, A, 2));
+  printf("Collision at 3 is %d\n", ft_tetri_collision_y(map, A, 3));
+  printf("Collision at 4 is %d\n", ft_tetri_collision_y(map, A, 4));
+  printf("Collision at 12 is %d\n", ft_tetri_collision_y(map, A, 12));
+  printf("Collision at 13 is %d\n", ft_tetri_collision_y(map, A, 13));
+  printf("Collision at 14 is %d\n", ft_tetri_collision_y(map, A, 14));
+
+  printf("\n");
+  ft_print_tetri(E, 16);
 
   printf("E.id_int0-3 are %d, %d, %d, %d.\n", E.id_int0, E.id_int1, E.id_int2, E.id_int3);
-  printf("\nCollisions for E at y is expect : result\n");
-  printf("Collision at 0 is 0 : %d\n", ft_tetri_collision_y(map, E, 0));
-  printf("Collision at 1 is 1 : %d\n", ft_tetri_collision_y(map, E, 1));
-  printf("Collision at 2 is 1 : %d\n", ft_tetri_collision_y(map, E, 2));
-  printf("Collision at 3 is 1 : %d\n", ft_tetri_collision_y(map, E, 3));
-  printf("Collision at 4 is 1 : %d\n", ft_tetri_collision_y(map, E, 4));
-  printf("Collision at 12 is 1 : %d\n", ft_tetri_collision_y(map, E, 12));
-  printf("Collision at 13 is 1 : %d\n", ft_tetri_collision_y(map, E, 13));
-  printf("Collision at 14 is 1 : %d\n", ft_tetri_collision_y(map, E, 14));
+  printf("\nCollisions for E at y is \n");
+  printf("Collision at 0 is %d\n", ft_tetri_collision_y(map, E, 0));
+  printf("Collision at 1 is %d\n", ft_tetri_collision_y(map, E, 1));
+  printf("Collision at 2 is %d\n", ft_tetri_collision_y(map, E, 2));
+  printf("Collision at 3 is %d\n", ft_tetri_collision_y(map, E, 3));
+  printf("Collision at 4 is %d\n", ft_tetri_collision_y(map, E, 4));
+  printf("Collision at 12 is %d\n", ft_tetri_collision_y(map, E, 12));
+  printf("Collision at 13 is %d\n", ft_tetri_collision_y(map, E, 13));
+  printf("Collision at 14 is %d\n", ft_tetri_collision_y(map, E, 14));
 
-  printf("\nCollisions for E at x,y is expect : result\n");
+  printf("\nCollisions for E at x,y is\n");
+
+  printf("Collision at 0,0 is %d\n", ft_collision_xy(map, E, 0, 0));
+  printf("Collision at 1,0 is %d\n", ft_collision_xy(map, E, 1, 0));
+  printf("Collision at 2,0 is %d\n", ft_collision_xy(map, E, 2, 0));
   
-  printf("Collision at 0,0 is 0 : %d\n", ft_collision_xy(map, E, 0, 0));
-  printf("Collision at 1,0 is 0 : %d\n", ft_collision_xy(map, E, 1, 0));
-  printf("Collision at 2,0 is 0 : %d\n", ft_collision_xy(map, E, 2, 0));
-  
-  printf("Collision at 3,0 is 0 : %d\n", ft_collision_xy(map, E, 3, 0));
-  printf("Collision at 4,0 is 1 : %d\n", ft_collision_xy(map, E, 4, 0));
+  printf("Collision at 3,0 is %d\n", ft_collision_xy(map, E, 3, 0));
+  printf("Collision at 4,0 is %d\n", ft_collision_xy(map, E, 4, 0));
   
   printf("Collision at 0,1 is 1 : %d\n", ft_collision_xy(map, E, 0, 1));
-  printf("Collision at 1,1 is 1 : %d\n", ft_collision_xy(map, E, 1, 1));
-  printf("Collision at 4,1 is 1 : %d\n", ft_collision_xy(map, E, 4, 1));
-  printf("Collision at 2 is 1 : %d\n", ft_tetri_collision_y(map, E, 2));
-  printf("Collision at 3 is 1 : %d\n", ft_tetri_collision_y(map, E, 3));
-  printf("Collision at 4 is 1 : %d\n", ft_tetri_collision_y(map, E, 4));
-  printf("Collision at 12 is 1 : %d\n", ft_tetri_collision_y(map, E, 12));
-  printf("Collision at 12,12 is 1 : %d\n", ft_collision_xy(map, E, 12, 12));
-  printf("Collision at 13 is 1 : %d\n", ft_tetri_collision_y(map, E, 13));
-  printf("Collision at 14 is 1 : %d\n", ft_tetri_collision_y(map, E, 14));
+  printf("Collision at 1,1 is %d\n", ft_collision_xy(map, E, 1, 1));
+  printf("Collision at 4,1 is %d\n", ft_collision_xy(map, E, 4, 1));
+  printf("Collision at 12,1 is %d\n", ft_collision_xy(map, E, 12, 1));
+  printf("Collision at 15,1 is %d\n", ft_collision_xy(map, E, 15, 1));
+  printf("Collision at 2 is %d\n", ft_tetri_collision_y(map, E, 2));
+  printf("Collision at 3 is %d\n", ft_tetri_collision_y(map, E, 3));
+  printf("Collision at 4 is %d\n", ft_tetri_collision_y(map, E, 4));
+  printf("Collision at 12 is %d\n", ft_tetri_collision_y(map, E, 12));
+  printf("Collision at 12,12 is %d\n", ft_collision_xy(map, E, 12, 12));
+  printf("Collision at 13 is %d\n", ft_tetri_collision_y(map, E, 13));
+  printf("Collision at 14 is %d\n", ft_tetri_collision_y(map, E, 14));
+
+  ft_print_bin_map(map);
+  ft_print_tetri(L, 16);
+  printf("L.id_int0-3 are %d, %d, %d, %d.\n", L.id_int0, L.id_int1, L.id_int2, L.id_int3);
+  printf("\nCollisions for L at y is\n");
+  printf("Collision at 0 is %d\n", ft_tetri_collision_y(map, L, 0));
+  printf("Collision at 1 is %d\n", ft_tetri_collision_y(map, L, 1));
+  printf("Collision at 2 is %d\n", ft_tetri_collision_y(map, L, 2));
+  printf("Collision at 3 is %d\n", ft_tetri_collision_y(map, L, 3));
+  printf("Collision at 4 is %d\n", ft_tetri_collision_y(map, L, 4));
+  printf("Collision at 12 is %d\n", ft_tetri_collision_y(map, L, 12));
+  printf("Collision at 13 is %d\n", ft_tetri_collision_y(map, L, 13));
+  printf("Collision at 14 is %d\n", ft_tetri_collision_y(map, L, 14));
+
+  printf("\nCollisions for L at x,y is\n");
   
+  printf("Collision at 0,0 is %d\n", ft_collision_xy(map, L, 0, 0));
+  printf("Collision at 1,0 is %d\n", ft_collision_xy(map, L, 1, 0));
+  printf("Collision at 2,0 is %d\n", ft_collision_xy(map, L, 2, 0));
+  
+  printf("Collision at 3,0 is %d\n", ft_collision_xy(map, L, 3, 0));
+  printf("Collision at 4,0 is %d\n", ft_collision_xy(map, L, 4, 0));
+  
+  printf("Collision at 0,10 is %d\n", ft_collision_xy(map, L, 0, 10));
+  printf("Collision at 1,1 is %d\n", ft_collision_xy(map, L, 1, 1));
+  printf("Collision at 9,8 is %d\n", ft_collision_xy(map, L, 9, 8));
+  printf("Collision at 2 is %d\n", ft_tetri_collision_y(map, L, 2));
+  printf("Collision at 3 is %d\n", ft_tetri_collision_y(map, L, 3));
+  printf("Collision at 4 is %d\n", ft_tetri_collision_y(map, L, 4));
+  printf("Collision at 12 is %d\n", ft_tetri_collision_y(map, L, 12));
+  printf("Collision at 12,12 is %d\n", ft_collision_xy(map, L, 12, 12));
+  printf("Collision at 13 is %d\n", ft_tetri_collision_y(map, L, 13));
+  printf("Collision at 14 is %d\n", ft_tetri_collision_y(map, L, 14));  
   return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:54:30 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/04 11:13:40 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/07 14:42:00 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ void ft_print_bin_map(u_int16_t *map)
   
   x = 0;
 
+  printf("\t0123456789012345\n");
   while (x < 13)
   {
+	  printf("%d\t", x);
 	  ft_print_bin_map_line(map[x], 16);
 	  x++;
   }
