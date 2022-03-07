@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/07 18:19:39 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/07 20:38:29 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,15 @@ void	ft_print_tetri_16(t_tetri tetri);//TO DO: erase
 u_int16_t	ft_collision_xy(u_int16_t *map, t_tetri tetri, u_int16_t pos_x, u_int16_t pos_y);
 u_int16_t	ft_line_collision(u_int16_t map_line, u_int16_t tetri_line);
 u_int16_t	ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, u_int16_t pos_y);
-u_int16_t	ft_shift_line(u_int16_t *tetri_line, u_int16_t x);
-u_int16_t	ft_shift_piece_x(u_int16_t *tetri, u_int16_t x);
 
 //map.c
 u_int16_t	ft_map_size(u_int16_t tetriminos);
 //u_int16_t	ft_init_map(u_int16_t *map, u_int16_t i);
 void ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
 void ft_print_bin_map(u_int16_t *map);
+
+//placealgo.c
+u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris);
+u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri);
 
 #endif
