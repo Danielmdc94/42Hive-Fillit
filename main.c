@@ -161,6 +161,8 @@ int	main(void)
   printf("Collision at 0,10 is %d\n", ft_collision_xy(map, L, 0, 10));
   printf("Collision at 1,1 is %d\n", ft_collision_xy(map, L, 1, 1));
   printf("Collision at 9,8 is %d\n", ft_collision_xy(map, L, 9, 8));
+  ft_print_tetri(L, 16);
+  printf("L.id_int0-3 are %d, %d, %d, %d.\n", L.id_int0, L.id_int1, L.id_int2, L.id_int3);
   printf("Collision at 2 is %d\n", ft_tetri_collision_y(map, L, 2));
   printf("Collision at 3 is %d\n", ft_tetri_collision_y(map, L, 3));
   printf("Collision at 4 is %d\n", ft_tetri_collision_y(map, L, 4));
