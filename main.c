@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/04 09:58:28 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/07 12:29:37 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	ft_print_bin(int int_piece, int bit_size)
 			ft_putchar('#');
 		else
 			ft_putchar('.');
-//		if ((bit_size == 16) && (i % 4 == 0))
-//			ft_putchar('\n');
 		i--;
 	}
 	return (0);
@@ -33,9 +31,8 @@ int	ft_print_bin(int int_piece, int bit_size)
 int	main(int argc, char **argv)
 {
 	char		**file;
-	int			i;
+	int			i; //printing test index
 	int			n_tet;
-	uint16_t	*piece_id;
 	t_tetri		*tetri;
 
 	i = 0;
@@ -43,9 +40,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error(1);
 	file = read_file(argv[1], &n_tet);
-	piece_id = str_to_int(file, n_tet);
 	tetri = (t_tetri *)ft_memalloc(sizeof(t_tetri) * n_tet + sizeof(t_tetri *));
-	build_struct(n_tet, file, piece_id, tetri);
+	build_struct(n_tet, file, str_to_int(file, n_tet), tetri);
 //Printing for testing purposes:
 	while (i < n_tet)
 	{
