@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/07 14:46:43 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/07 17:55:45 by acastano         ###   ########.fr       */
 /*   Updated: 2022/03/07 12:29:37 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -68,5 +68,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	ft_putstr("It kinda works\n");
+	ft_putstr("\n\ndaniels havoc\n\n");
 	return (0);
 }
