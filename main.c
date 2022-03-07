@@ -69,5 +69,6 @@ int	main(int argc, char **argv)
 	}
 	ft_putstr("\n\nHAVOCCCC\n\n");
 	ft_putstr("It kinda works\n");
+	ft_putstr("\n\ndaniels havoc\n\n");
 	return (0);
 }
