@@ -56,7 +56,6 @@ void ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
 void ft_print_bin_map(u_int16_t *map);
 
 //placealgo.c
-//u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris);
 u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_int16_t map_size);
 u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t pos_x, u_int16_t pos_y);
 

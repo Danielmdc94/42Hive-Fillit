@@ -12,10 +12,10 @@
 
 #include "fillit.h"
 
-void	valid_tet(uint16_t tetri_id);
+void	valid_tet(u_int16_t tetri_id);
 
 void	build_struct(int n_tet, char **file,
-		uint16_t *piece_id, t_tetri *tetri)
+		u_int16_t *piece_id, t_tetri *tetri)
 {
 	int	i;
 
@@ -49,10 +49,10 @@ void	ft_update_tetri(t_tetri *tetri, u_int16_t new_id)
   //  tetri.pos_y = 0;
 }
 
-void	valid_tet(uint16_t tetri_id)
+void	valid_tet(u_int16_t tetri_id)
 {
 	int				i;
-	static uint16_t	valid_tet[19] = {8800, 11776, 19520, 19584, 19968,
+	static u_int16_t	valid_tet[19] = {8800, 11776, 19520, 19584, 19968,
 		27648, 34952, 35008, 35904, 35968, 36352, 50240,
 		50688, 51328, 52224, 57856, 58368, 59392, 61440};
 
