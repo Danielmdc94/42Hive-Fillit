@@ -25,10 +25,10 @@ void	ft_putnbr(int n)
 		n = -n;
 		ft_putchar('-');
 	}
-	if (n <= 2147483647 && n >= -2147483648)
-	{
+	//	if (n <= 2147483647 && n >= -2147483648)
+	//	{
 		if (n > 9)
 			ft_putnbr(n / 10);
 		ft_putchar('0' + n % 10);
-	}
+		//	}
 }

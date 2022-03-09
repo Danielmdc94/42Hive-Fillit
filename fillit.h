@@ -14,6 +14,7 @@
 # define FILLIT_H
 
 # include "libft/libft.h"
+#include <stdio.h>//TO DO: erase
 
 //open()
 # include <fcntl.h>
@@ -37,7 +38,7 @@ char		**read_file(char *file, int *n_tet);//read_file
 u_int16_t	*str_to_int(char **file, int n_tet);//str_to_int
 void	build_struct(int n_tet, char **file,
 					 u_int16_t *piece_id, t_tetri *tetri);//build_struct
-u_int16_t	*map_gen(u_int16_t *map, int n_tet);//map
+u_int16_t	*map_gen(u_int16_t *map, int n_tetris);//map
 
 //build_struct
 void	ft_update_tetri(t_tetri *tetri, u_int16_t new_id);
@@ -50,10 +51,10 @@ u_int16_t	ft_line_collision(u_int16_t map_line, u_int16_t tetri_line);
 u_int16_t	ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, u_int16_t pos_y);
 
 //map.c
-u_int16_t	ft_map_size(u_int16_t tetriminos);
-//u_int16_t	ft_init_map(u_int16_t *map, u_int16_t i);
-void ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
-void ft_print_bin_map(u_int16_t *map);
+u_int16_t	ft_map_size(u_int16_t n_tetris);
+void	ft_init_map(u_int16_t *map, u_int16_t map_size);
+void	ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
+void	ft_print_bin_map(u_int16_t *map);
 
 //placealgo.c
 u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_int16_t map_size);
