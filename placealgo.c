@@ -6,11 +6,12 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 19:48:12 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/09 13:04:34 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:55:50 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>//printf TO DO: erase
 
 //void	ft_update_map
 
@@ -35,11 +36,10 @@ u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t pos_x, u_int1
 
 	x = pos_x;//or the pieces saved pos
 	y = pos_y;//same
-//	while (y < 13)
-//    {
-//		while (x < 13)
-//		{
-	if (ft_collision_xy(map, *tetri, x, y) == 0)
+/*	printf("\ninside place TETRI, before collision check\n");
+	ft_print_bin_map(map);
+	printf("\n");
+*/	if (ft_collision_xy(map, *tetri, x, y) == 0)
 	{
 		ft_update_tetri_xy(tetri, x, y);
 		map[y] = (map[y] | (tetri->id_int0 >> x));
@@ -48,11 +48,10 @@ u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t pos_x, u_int1
 		map[y+3] = (map[y+3] | (tetri->id_int3 >> x));
 		return (1);
 	}
-//			x++;
-//		}
-//		x = 0;
-//		y++;
-//    }
+/*	printf("\ninside place TETRI, after collision check\n");
+	ft_print_bin_map(map);
+	printf("\n");
+*/
 	return (0);//didnt work
 }
 
@@ -66,18 +65,20 @@ u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_in
 	x = 0;//or the pieces saved pos
 	y = 0;//same
 	i = 0;
-//	while (i < n_tetris)//4
-//	{
-	while (y < map_size)//13
+/*	printf("\ninside place algo\n");
+	ft_print_bin_map(map);
+	printf("\ntetris[0] is\n");
+	ft_print_tetri_16(tetris[0]);
+*/	while (y < map_size)//13
     {
 		while (x < map_size)//13
 		{
-			if (ft_place_tetri(map, &(tetris[i]), x, y) == 1)
+			if (ft_place_tetri(map, &(tetris[0]), x, y) == 1)
 			{
 				i++;
 				if (i < n_tetris)
 				{
-					if (ft_placealgo(map, tetris++, (n_tetris - i), map_size) == 1)
+					if (ft_placealgo(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
 						return (1);
 					else
 					{
@@ -99,3 +100,5 @@ u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_in
 	}
 	return (0);//didnt work
 }
+
+//grow map size
