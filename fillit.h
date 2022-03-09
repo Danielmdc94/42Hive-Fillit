@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/07 20:38:29 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:01:27 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
 void ft_print_bin_map(u_int16_t *map);
 
 //placealgo.c
-u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris);
-u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri);
+//u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris);
+u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_int16_t map_size);
+u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t pos_x, u_int16_t pos_y);
 
 #endif

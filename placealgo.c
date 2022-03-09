@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 19:48:12 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/07 20:38:10 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:04:34 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,51 +30,72 @@ void	ft_update_tetri_xy(t_tetri *tetri, u_int16_t pos_x, u_int16_t pos_y)
 //Do not try to understand. Under construction. No sense yet
 u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t pos_x, u_int16_t pos_y)
 {
-  u_int16_t	x;
-  u_int16_t	y;
+	u_int16_t	x;
+	u_int16_t	y;
 
-  x = pos_x;//or the pieces saved pos
-  y = pos_y;//same
-  while (y < 13)
-    {
-      while (x < 13)
+	x = pos_x;//or the pieces saved pos
+	y = pos_y;//same
+//	while (y < 13)
+//    {
+//		while (x < 13)
+//		{
+	if (ft_collision_xy(map, *tetri, x, y) == 0)
 	{
-	  if (ft_collision_xy(map, tetri, x, y) == 0)
-	    {
-	      ft_update_tetri_xy(tetri, x, y);
-	      map[y] = (map[y] | (tetri->id_int0 >> x));
-	      map[y+1] = (map[y+1] | (tetri->id_int1 >> x));
-	      map[y+2] = (map[y+2] | (tetri->id_int2 >> x));
-	      map[y+3] = (map[y+3] | (tetri->id_int3 >> x));
-	      return (1);
-	    }
-	  x++;
+		ft_update_tetri_xy(tetri, x, y);
+		map[y] = (map[y] | (tetri->id_int0 >> x));
+		map[y+1] = (map[y+1] | (tetri->id_int1 >> x));
+		map[y+2] = (map[y+2] | (tetri->id_int2 >> x));
+		map[y+3] = (map[y+3] | (tetri->id_int3 >> x));
+		return (1);
 	}
-      x = 0;
-      y++;
-    }
-  return (0);//didnt work
+//			x++;
+//		}
+//		x = 0;
+//		y++;
+//    }
+	return (0);//didnt work
 }
 
 //Do not try to understand. Under construction. No sense yet
-u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris)
+u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_int16_t map_size)
 {
-  u_int16_t	i;
+	u_int16_t	i;
+	u_int16_t	x;
+	u_int16_t	y;
 
-  i = 0;
-  if (i < n_tetris)
+	x = 0;//or the pieces saved pos
+	y = 0;//same
+	i = 0;
+//	while (i < n_tetris)//4
+//	{
+	while (y < map_size)//13
     {
-      if (ft_place_tetri(map, &(tetris[i])) == 1)
-	{
-	  i++;
-	  if (i < n_tetris)
-	    {
-	      if (ft_placealgo(map, tetris++, (n_tetris - i)) == 1)
-		return (1);
-	    }
-	  
-	  return (1);
+		while (x < map_size)//13
+		{
+			if (ft_place_tetri(map, &(tetris[i]), x, y) == 1)
+			{
+				i++;
+				if (i < n_tetris)
+				{
+					if (ft_placealgo(map, tetris++, (n_tetris - i), map_size) == 1)
+						return (1);
+					else
+					{
+						i--;
+						ft_update_tetri_xy(&tetris[i], 0, 0);
+						map[y] = (map[y] ^ (tetris[i].id_int0 >> x));
+						map[y+1] = (map[y+1] ^ (tetris[i].id_int1 >> x));
+						map[y+2] = (map[y+2] ^ (tetris[i].id_int2 >> x));
+						map[y+3] = (map[y+3] ^ (tetris[i].id_int3 >> x));
+					}
+				}
+				else
+					return (1);
+			}
+			x++;
+		}
+		x = 0;
+		y++;
 	}
-    }
-  return (0);//didnt work
+	return (0);//didnt work
 }
