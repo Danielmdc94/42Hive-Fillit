@@ -73,6 +73,7 @@ int	main(int argc, char **argv)
     }
   printf("\nMap after placealgo, map size is %d\n", map_size);
   ft_print_bin_map(map);
+  ft_print_map(map, n_tetris, tetri_array, map_size);
   ft_putstr("It kinda works\n");
   return (0);
 }
