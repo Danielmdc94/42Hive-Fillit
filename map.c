@@ -13,8 +13,8 @@ u_int16_t	*map_gen(u_int16_t *map, int n_tet)
 
 	x = 0;
 	ft_init_map(map, ft_map_size(n_tet));
-	ft_putstr("\nft_print_bin_map of desired size\n\n");
-	ft_print_bin_map(map);
+//	ft_putstr("\nft_print_bin_map of desired size\n\n");
+//	ft_print_bin_map(map);
 	return (map);
 }
 	

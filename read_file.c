@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/02/28 19:32:33 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:22:41 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*isolate_piece(char *file_str, int tetriminos);
 char	**read_file(char *file, int *n_tet)
 {
 	int		fd;
-	size_t	r_bytes;
+	ssize_t	r_bytes;
 	int		tetriminos;
 	char	buff[547];
 	char	*file_str;
