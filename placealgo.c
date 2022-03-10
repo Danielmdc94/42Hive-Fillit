@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 19:48:12 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/10 13:53:25 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:27:03 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t pos_x, u_int1
 	if (ft_collision_xy(map, *tetri, pos_x, pos_y) == 0)
 	{
 		ft_update_tetri_xy(tetri, pos_x, pos_y);
-		map[pos_y] = (map[pos_y] | (tetri->id_int0 >> pos_x));
+		(u_int64_t)(map[pos_y]) = (((u_int64_t)(map[pos_y])) | (tetri->id_int64 >> pos_x));
+/*		map[pos_y] = (map[pos_y] | (tetri->id_int0 >> pos_x));
 		map[pos_y+1] = (map[pos_y+1] | (tetri->id_int1 >> pos_x));
 		map[pos_y+2] = (map[pos_y+2] | (tetri->id_int2 >> pos_x));
 		map[pos_y+3] = (map[pos_y+3] | (tetri->id_int3 >> pos_x));
+*/
 		return (1);
 	}
 	return (0);//if it didnt work
@@ -66,10 +68,12 @@ u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_in
 					{
 						i--;
 						ft_update_tetri_xy(&tetris[i], 0, 0);
-						map[y] = (map[y] ^ (tetris[i].id_int0 >> x));
+						(u_int64_t)(map[y]) = (((u_int64_t)(map[y])) ^ tetris[i].id_int64 >> x);
+/*						map[y] = (map[y] ^ (tetris[i].id_int0 >> x));
 						map[y+1] = (map[y+1] ^ (tetris[i].id_int1 >> x));
 						map[y+2] = (map[y+2] ^ (tetris[i].id_int2 >> x));
 						map[y+3] = (map[y+3] ^ (tetris[i].id_int3 >> x));
+*/
 					}
 				}
 				else
