@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/10 16:18:35 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:04:15 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,15 @@ void	build_struct(int n_tet, char **file,
 		u_int16_t *piece_id, t_tetri *tetri)
 {
 	int	i;
+	u_int64_t	int0;
+	u_int64_t	int1;
+	u_int64_t	int2;
+	u_int64_t	int3;
 
+	int0 = 0;
+	int1 = 0;
+	int2 = 0;
+	int3 = 0;
 	i = 0;
 	while (i < n_tet)
 	{
@@ -30,8 +38,13 @@ void	build_struct(int n_tet, char **file,
 		(*tetri).string = file[i];
 		(*tetri).id_char = 'A' + i;
 		valid_tet((*tetri).id_int);
-		(*tetri).id_int64 = (((*piece_id) & 61440) << 12) | (((*piece_id) & 3840) << 9)
-			| (((*piece_id) & 240) << 6) | (((*piece_id) & 12) << 3);
+		int0 = ((u_int64_t)((*piece_id) & 61440) << 48);
+		int1 = ((u_int64_t)((*piece_id) & 3840) << 36);
+		int2 = (((*piece_id) & 240) << 24);
+		int3 = (((*piece_id) & 12) << 12);
+//		(*tetri).id_int64 = (((*piece_id) & 61440) << 48) | (((*piece_id) & 3840) << 36)
+//			| (((*piece_id) & 240) << 24) | (((*piece_id) & 12) << 12);
+		(*tetri).id_int64 = ((int0) | (int1) | (int2) | (int3));
 		piece_id++;
 		tetri++;
 		i++;
