@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/10 13:42:47 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:13:47 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ char	**read_file(char *file, int *n_tet)
 		error(1);
 	close(fd);
 	buff[r_bytes] = '\0';
-	if ((r_bytes + 1) % 21 != 0 || r_bytes == 0)
-		error(2);
+//	if ((r_bytes + 1) % 21 != 0 || r_bytes == 0)
+//		error(2);
 	tetriminos = (r_bytes + 1) / 21;
 	*n_tet = tetriminos;
 	file_str = ft_strdup(buff);
