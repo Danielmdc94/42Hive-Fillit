@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/10 12:36:02 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:20:39 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@
 # include <fcntl.h>
 
 typedef struct s_tetri{
-	char		id_char;
 	char		*string;
+	char		id_char;
 	u_int16_t	id_int;
-	u_int16_t	id_int0;
-	u_int16_t	id_int1;
-	u_int16_t	id_int2;
-	u_int16_t	id_int3;
+	u_int16_t	id_int64;
+//	u_int16_t	id_int0;
+//	u_int16_t	id_int1;
+//	u_int16_t	id_int2;
+//	u_int16_t	id_int3;
 	int			pos_x;
 	int			pos_y;
 }				t_tetri;
@@ -47,7 +48,7 @@ void	ft_print_tetri_16(t_tetri tetri);//TO DO: erase
 
 //collision.c
 u_int16_t	ft_collision_xy(u_int16_t *map, t_tetri tetri, u_int16_t pos_x, u_int16_t pos_y);
-u_int16_t	ft_line_collision(u_int16_t map_line, u_int16_t tetri_line);
+//u_int16_t	ft_line_collision(u_int16_t map_line, u_int16_t tetri_line);
 u_int16_t	ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, u_int16_t pos_y);
 
 //map.c

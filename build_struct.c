@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/10 14:41:47 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:18:35 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ void	build_struct(int n_tet, char **file,
 	while (i < n_tet)
 	{
 		(*tetri).id_int = *piece_id;
-		(*tetri).id_int0 = *piece_id & 61440;
-		(*tetri).id_int1 = (*piece_id << 4) & 61440;
-		(*tetri).id_int2 = (*piece_id << 8) & 61440;
-		(*tetri).id_int3 = (*piece_id << 12) & 61440;
+//		(*tetri).id_int0 = *piece_id & 61440;
+//		(*tetri).id_int1 = (*piece_id << 4) & 61440;
+//		(*tetri).id_int2 = (*piece_id << 8) & 61440;
+//		(*tetri).id_int3 = (*piece_id << 12) & 61440;
 		(*tetri).string = file[i];
 		(*tetri).id_char = 'A' + i;
 		valid_tet((*tetri).id_int);
+		(*tetri).id_int64 = (((*piece_id) & 61440) << 12) | (((*piece_id) & 3840) << 9)
+			| (((*piece_id) & 240) << 6) | (((*piece_id) & 12) << 3);
 		piece_id++;
 		tetri++;
 		i++;
@@ -41,10 +43,10 @@ void	ft_update_tetri(t_tetri *tetri, u_int16_t new_id)
   //  tetri.id_char = 'E';
   //  tetri.string = "1000100010001000";
   tetri->id_int = new_id;
-  tetri->id_int0 = new_id & 61440;//F000
-  tetri->id_int1 = (new_id & 3840) << 4;//F00
-  tetri->id_int2 = (new_id & 240) << 8;//F0
-  tetri->id_int3 = (new_id & 15) << 12;//F
+//  tetri->id_int0 = new_id & 61440;//F000
+//  tetri->id_int1 = (new_id & 3840) << 4;//F00
+//  tetri->id_int2 = (new_id & 240) << 8;//F0
+//  tetri->id_int3 = (new_id & 15) << 12;//F
   //  tetri.pos_x = 0;
   //  tetri.pos_y = 0;
 }
@@ -84,7 +86,7 @@ void	ft_print_tetri(t_tetri tetri, u_int16_t bit_size)//TO DO: erase
       i--;
     }
 }
-
+/*
 void	ft_print_tetri_16(t_tetri tetri)//TO DO: erase
 {
   int i;
@@ -133,4 +135,4 @@ void	ft_print_tetri_16(t_tetri tetri)//TO DO: erase
 	ft_putchar('\n');
       i--;
     }
-}
+}*/
