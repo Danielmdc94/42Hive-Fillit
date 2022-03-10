@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/09 15:22:41 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:42:47 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ char	**read_file(char *file, int *n_tet)
 	fd = open(file, O_RDONLY);
 	r_bytes = read(fd, buff, 547);
 	if (fd == -1 || r_bytes < 0)
-		error(0);
+		error(1);
 	close(fd);
 	buff[r_bytes] = '\0';
 	if ((r_bytes + 1) % 21 != 0 || r_bytes == 0)
-		error(0);
+		error(2);
 	tetriminos = (r_bytes + 1) / 21;
 	*n_tet = tetriminos;
 	file_str = ft_strdup(buff);
@@ -61,7 +61,7 @@ static char	*validate_format(char *file_str, int tetriminos)
 	{
 		i = check_tet(file_str, i);
 		if (file_str[i] != '\n' && file_str[i] != '\0')
-			error(0);
+			error(3);
 		tetriminos--;
 		i++;
 	}
@@ -86,12 +86,12 @@ static int	check_tet(char *file_str, int i)
 		while (columns < 4)
 		{
 			if (file_str[i] != '.' && file_str[i] != '#')
-				error(0);
+				error(4);
 			columns++;
 			i++;
 		}
 		if (file_str[i] != '\n')
-			error(0);
+			error(5);
 		columns = 0;
 		i++;
 		lines++;

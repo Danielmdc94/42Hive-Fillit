@@ -20,7 +20,7 @@ void	ft_init_map(u_int16_t *map, u_int16_t map_size)
 	
   x = 0;
   if (map_size > 13)
-    error(0);
+    error(7);
   while (x < map_size)
     {
       map[x] = (65535 >> map_size);

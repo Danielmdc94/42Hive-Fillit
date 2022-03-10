@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/07 18:26:40 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:49:05 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	valid_tet(u_int16_t tetri_id)
 		i++;
 	}
 	if (valid_tet[i] != tetri_id)
-		error(0);
+		error(6);
 }
 
 //changed to print with tetris, not ints

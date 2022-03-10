@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 19:48:12 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/09 17:55:50 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:53:25 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,13 @@ void	ft_update_tetri_xy(t_tetri *tetri, u_int16_t pos_x, u_int16_t pos_y)
 
 u_int16_t	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t pos_x, u_int16_t pos_y)
 {
-	u_int16_t	x;
-	u_int16_t	y;
-
-	x = pos_x;
-	y = pos_y;
-	if (ft_collision_xy(map, *tetri, x, y) == 0)
+	if (ft_collision_xy(map, *tetri, pos_x, pos_y) == 0)
 	{
-		ft_update_tetri_xy(tetri, x, y);
-		map[y] = (map[y] | (tetri->id_int0 >> x));
-		map[y+1] = (map[y+1] | (tetri->id_int1 >> x));
-		map[y+2] = (map[y+2] | (tetri->id_int2 >> x));
-		map[y+3] = (map[y+3] | (tetri->id_int3 >> x));
+		ft_update_tetri_xy(tetri, pos_x, pos_y);
+		map[pos_y] = (map[pos_y] | (tetri->id_int0 >> pos_x));
+		map[pos_y+1] = (map[pos_y+1] | (tetri->id_int1 >> pos_x));
+		map[pos_y+2] = (map[pos_y+2] | (tetri->id_int2 >> pos_x));
+		map[pos_y+3] = (map[pos_y+3] | (tetri->id_int3 >> pos_x));
 		return (1);
 	}
 	return (0);//if it didnt work
