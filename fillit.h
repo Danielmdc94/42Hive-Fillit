@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/11 17:00:27 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:03:43 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ typedef struct s_tetri{
 	char		id_char;
 	u_int16_t	id_int;
 	u_int64_t	id_int64;
-//	u_int16_t	id_int0;
-//	u_int16_t	id_int1;
-//	u_int16_t	id_int2;
-//	u_int16_t	id_int3;
 	int			pos_x;
 	int			pos_y;
 }				t_tetri;

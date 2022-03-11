@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/10 17:04:15 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:26:29 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ void	build_struct(int n_tet, char **file,
 	while (i < n_tet)
 	{
 		(*tetri).id_int = *piece_id;
-//		(*tetri).id_int0 = *piece_id & 61440;
-//		(*tetri).id_int1 = (*piece_id << 4) & 61440;
-//		(*tetri).id_int2 = (*piece_id << 8) & 61440;
-//		(*tetri).id_int3 = (*piece_id << 12) & 61440;
 		(*tetri).string = file[i];
 		(*tetri).id_char = 'A' + i;
 		valid_tet((*tetri).id_int);
@@ -42,8 +38,6 @@ void	build_struct(int n_tet, char **file,
 		int1 = ((u_int64_t)((*piece_id) & 3840) << 36);
 		int2 = (((*piece_id) & 240) << 24);
 		int3 = (((*piece_id) & 12) << 12);
-//		(*tetri).id_int64 = (((*piece_id) & 61440) << 48) | (((*piece_id) & 3840) << 36)
-//			| (((*piece_id) & 240) << 24) | (((*piece_id) & 12) << 12);
 		(*tetri).id_int64 = ((int0) | (int1) | (int2) | (int3));
 		piece_id++;
 		tetri++;
