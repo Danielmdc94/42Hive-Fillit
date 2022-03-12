@@ -49,32 +49,35 @@ int	main(int argc, char **argv)
   build_struct(n_tetris, file, str_to_int(file, n_tetris), tetri_array);
   map_size = ft_map_size(n_tetris);
 //  map_gen(map, n_tetris);
-	ft_init_map(map, map_size);
+  ft_init_map(map, map_size);
   printf("\nInitialized map\n");
   ft_print_bin_map(map);
   printf("\nPieces:\n");
-//  while (i < n_tetris)
-//    {
-//      ft_print_tetri_16(tetri_array[i]);
-//      printf("\n");
-//      i++;
-//    }
+  while (i < n_tetris)
+    {
+      ft_print_tetri_64(tetri_array[i]);
+      printf("\n");
+      i++;
+    }
+  //ft_print64(tetri_array[0].id_int64);
+  //  printf("IN MAIN\n");
   while (map_size < 13)
     {
       if (ft_placealgo(map, tetri_array, n_tetris, map_size) == 1)
 	{
-	  printf("\nSolved\n");
+	  //	  printf("\nSolved\n");
 	  break;
 	}
       else
 	{
-	  map_size++;
-	  ft_init_map(map, map_size);
+	  return(0);
+	  //map_size++;
+	  //ft_init_map(map, map_size);
 	}
     }
   printf("\nMap after placealgo, map size is %d\n", map_size);
   ft_print_bin_map(map);
-  ft_print_map(map, n_tetris, tetri_array, map_size);
-  ft_putstr("It kinda works\n");
+  //  ft_print_map(map, n_tetris, tetri_array, map_size);
+  //  ft_putstr("It kinda works\n");
   return (0);
 }

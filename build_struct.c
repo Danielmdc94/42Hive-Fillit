@@ -41,7 +41,7 @@ void	build_struct(int n_tet, char **file,
 		int0 = ((u_int64_t)((*piece_id) & 61440) << 48);
 		int1 = ((u_int64_t)((*piece_id) & 3840) << 36);
 		int2 = (((*piece_id) & 240) << 24);
-		int3 = (((*piece_id) & 12) << 12);
+		int3 = (((*piece_id) & 15) << 12);
 //		(*tetri).id_int64 = (((*piece_id) & 61440) << 48) | (((*piece_id) & 3840) << 36)
 //			| (((*piece_id) & 240) << 24) | (((*piece_id) & 12) << 12);
 		(*tetri).id_int64 = ((int0) | (int1) | (int2) | (int3));
@@ -99,6 +99,25 @@ void	ft_print_tetri(t_tetri tetri, u_int16_t bit_size)//TO DO: erase
       i--;
     }
 }
+
+//changed to print with tetris, not ints
+void	ft_print_tetri_64(t_tetri tetri)//TO DO: erase
+{
+  int i;
+
+  i = 64 - 1;
+  while (i >= 0)
+    {
+      if (tetri.id_int64 & (1UL << i))
+	ft_putchar(tetri.id_char);
+      else
+	ft_putchar('.');
+      if (i % 16 == 0)
+	ft_putchar('\n');
+      i--;
+    }
+}
+
 /*
 void	ft_print_tetri_16(t_tetri tetri)//TO DO: erase
 {
