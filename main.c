@@ -77,7 +77,9 @@ int	main(int argc, char **argv)
     }
   printf("\nMap after placealgo, map size is %d\n", map_size);
   ft_print_bin_map(map);
-  //  ft_print_map(map, n_tetris, tetri_array, map_size);
+  printf("Coordinates of\nA: %d, %d\nB: %d, %d\nC: %d, %d\nD: %d, %d\n", tetri_array[0].pos_x, tetri_array[0].pos_y, tetri_array[1].pos_x, tetri_array[1].pos_y, tetri_array[2].pos_x, tetri_array[2].pos_y, tetri_array[3].pos_x, tetri_array[3].pos_y);
+  //ft_print64(tetri_array[0].id_int64);
+  ft_print_map(n_tetris, tetri_array, map_size);
   //  ft_putstr("It kinda works\n");
   return (0);
 }

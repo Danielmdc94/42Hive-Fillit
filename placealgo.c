@@ -106,7 +106,7 @@ u_int16_t	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_in
 	      if (n_tetris > 1)
 		{
 		  if (ft_placealgo(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
-		      return (1);
+		    return (1);
 		  else
 		    {
 		      ft_update_tetri_xy(&tetris[0], 0, 0);
