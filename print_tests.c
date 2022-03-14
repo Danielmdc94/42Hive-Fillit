@@ -62,7 +62,7 @@ void	ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size)
 }
 
 //for now joined constructing map_string and printing
-void	ft_print_map(u_int16_t *map, u_int16_t n_tetris, t_tetri *tetris, u_int16_t map_size)
+void	ft_print_map(u_int16_t n_tetris, t_tetri *tetris, u_int16_t map_size)
 {
   u_int16_t	i;
   char	*map_char;
@@ -71,31 +71,55 @@ void	ft_print_map(u_int16_t *map, u_int16_t n_tetris, t_tetri *tetris, u_int16_t
   map_len = map_size * map_size;
   i = 0;
   map_char = (char *)malloc(sizeof(char) * (map_len + 1));
-  //initializes all to /0, problem to fill with chars
   ft_memset(map_char, '.', map_len);
   map_char[map_len] = '\0';
-  /*  while (i < n_tetris)
+    while (i < n_tetris)
     {
-      map_char[tetris[i].id_int0] =
-      if (map_line & (1UL << i))
-	ft_putchar('1');
-      else
-	ft_putchar('0');
-      if ((bit_size == 16) && (i % 16 == 0))
-	ft_putchar('\n');
-      i++;
-      }*/
-  if (tetris[0].id_int && map && n_tetris)//to silence compiler, unused variables
-    {
-      printf("\n");
-      while (i < map_len)
-	{
-	  ft_putchar(map_char[i]);
-	  if (((i + 1) % map_size) == 0)
-	    printf("\n");
-	  i++;
+		ft_fill_letters(map_char, tetris[i], map_size);
+		i++;
 	}
-      printf("\n");
+	i = 0;
+	while (i < map_len)
+    {
+      ft_putchar(map_char[i]);
+      if (((i + 1) % map_size) == 0)
+	printf("\n");
+      i++;
     }
   ft_strdel(&map_char);
+}
+//changed to print with tetris, not ints
+void	ft_print_tetri(t_tetri tetri, u_int16_t bit_size)//TO DO: erase
+{
+  int i;
+
+  i = bit_size - 1;
+  while (i >= 0)
+    {
+      if (tetri.id_int & (1UL << i))
+	ft_putchar(tetri.id_char);
+      else
+	ft_putchar('.');
+      if ((bit_size == 16) && (i % 4 == 0))
+	ft_putchar('\n');
+      i--;
+    }
+}
+
+//changed to print with tetris, not ints
+void	ft_print_tetri_64(t_tetri tetri)//TO DO: erase
+{
+  int i;
+
+  i = 64 - 1;
+  while (i >= 0)
+    {
+      if (tetri.id_int64 & (1UL << i))
+	ft_putchar(tetri.id_char);
+      else
+	ft_putchar('.');
+      if (i % 16 == 0)
+	ft_putchar('\n');
+      i--;
+    }
 }
