@@ -6,13 +6,13 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 19:07:23 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/14 15:18:19 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/14 16:55:03 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, u_int16_t y)
+int	ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, int y)
 {
 	u_int64_t	res;
 
@@ -26,7 +26,7 @@ int	ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, u_int16_t y)
 	return (0);
 }
 
-int	ft_collision_xy(u_int16_t *map, t_tetri tetri, u_int16_t x, u_int16_t y)
+int	ft_collision_xy(u_int16_t *map, t_tetri tetri, int x, int y)
 {
 	if (y > 12 || x > 12)
 		return (1);

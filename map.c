@@ -6,23 +6,23 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:34:26 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/14 15:47:32 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:24:35 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-u_int16_t	ft_map_size(u_int16_t n_tetris)
+u_int16_t	ft_map_size(int n_tetris)
 {
 	u_int16_t	size;
 
-	size = 3;
+	size = 2;
 	while ((size * size) < (n_tetris * 4))
 		size++;
 	return (size);
 }
 
-void	ft_init_map(u_int16_t *map, u_int16_t map_size)
+void	ft_init_map(u_int16_t *map, int map_size)
 {
 	u_int16_t	x;
 
@@ -42,7 +42,35 @@ void	ft_init_map(u_int16_t *map, u_int16_t map_size)
 	}
 }
 
-void	ft_fill_letters(char *map_char, t_tetri tetri, u_int16_t map_size)
+void	ft_update_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
+{
+	u_int64_t	reorg_map;
+	u_int64_t	temp;
+
+	temp = 0;
+	reorg_map = ft_reorg_piece(*(u_int64_t *)(map + y));
+	temp = (reorg_map | (id_int64 >> x));
+	map[y] = (temp >> 48);
+	map[y + 1] = (temp >> 32);
+	map[y + 2] = (temp >> 16);
+	map[y + 3] = (temp);
+}
+
+void	ft_revert_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
+{
+	u_int64_t	reorg_map;
+	u_int64_t	temp;
+
+	temp = 0;
+	reorg_map = ft_reorg_piece(*(u_int64_t *)(map + y));
+	temp = (reorg_map ^ (id_int64 >> x));
+	map[y] = (temp >> 48);
+	map[y + 1] = (temp >> 32);
+	map[y + 2] = (temp >> 16);
+	map[y + 3] = (temp);
+}
+
+void	ft_fill_letters(char *map_char, t_tetri tetri, int map_size)
 {
 	u_int16_t	i;
 	u_int16_t	x;
@@ -67,7 +95,7 @@ void	ft_fill_letters(char *map_char, t_tetri tetri, u_int16_t map_size)
 	}
 }
 
-void	ft_print_map(u_int16_t n_tetris, t_tetri *tetris, u_int16_t map_size)
+void	print_map(int n_tetris, t_tetri *tetris, int map_size)
 {
 	u_int16_t	i;
 	char		*map_char;

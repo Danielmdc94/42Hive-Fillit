@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 19:48:12 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/14 15:14:14 by acastano         ###   ########.fr       */
+/*   Created: 2022/03/14 16:48:27 by acastano          #+#    #+#             */
+/*   Updated: 2022/03/14 17:31:23 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,41 +23,13 @@ u_int64_t	ft_reorg_piece(u_int64_t id_int64)
 	return (temp_piece);
 }
 
-void	ft_update_tetri_xy(t_tetri *tetri, u_int16_t x, u_int16_t y)
+void	ft_update_tetri_xy(t_tetri *tetri, int x, int y)
 {
 	tetri->pos_x = x;
 	tetri->pos_y = y;
 }
 
-void	ft_update_map(u_int16_t *map, u_int16_t x, u_int16_t y, u_int64_t id_int64)
-{
-	u_int64_t	reorg_map;
-	u_int64_t	temp;
-
-	temp = 0;
-	reorg_map = ft_reorg_piece(*(u_int64_t *)(map + y));
-	temp = (reorg_map | (id_int64 >> x));
-	map[y] = (temp >> 48);
-	map[y+1] = (temp >> 32);
-	map[y+2] = (temp >> 16);
-	map[y+3] = (temp);
-}
-
-void	ft_revert_map(u_int16_t *map, u_int16_t x, u_int16_t y, u_int64_t id_int64)
-{
-	u_int64_t	reorg_map;
-	u_int64_t	temp;
-	temp = 0;
-	reorg_map = ft_reorg_piece(*(u_int64_t *)(map + y));
-	temp = (reorg_map ^ (id_int64 >> x));
-
-	map[y] = (temp >> 48);
-	map[y+1] = (temp >> 32);
-	map[y+2] = (temp >> 16);
-	map[y+3] = (temp);
-}
-
-int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t x, u_int16_t y)
+int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y)
 {
 	if (ft_collision_xy(map, *tetri, x, y) == 0)
 	{
@@ -68,10 +40,10 @@ int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, u_int16_t x, u_int16_t y)
 	return (0);
 }
 
-int	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_int16_t map_size)
+int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
 {
-	u_int16_t	x;
-	u_int16_t	y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -83,7 +55,7 @@ int	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_int16_t 
 			{
 				if (n_tetris > 1)
 				{
-					if (ft_placealgo(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
+					if (fillit(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
 						return (1);
 					else
 					{
@@ -101,3 +73,23 @@ int	ft_placealgo(u_int16_t *map, t_tetri *tetris, u_int16_t n_tetris, u_int16_t 
 	}
 	return (0);
 }
+/*
+int	ft_placealgo(u_int16_t *map, t_tetri *tetris, int n_tetris, u_int16_t map_size)
+{
+	if (ft_place_tetri(map, &(tetris[0]), x, y) == 1)
+	{
+		if (n_tetris > 1)
+		{
+			if (ft_placealgo(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
+				return (1);
+			else
+			{
+				ft_update_tetri_xy(&tetris[0], 0, 0);
+				ft_revert_map(map, x, y, (tetris[0].id_int64));
+			}
+		}
+		else
+			return (1);
+	}
+}
+*/
