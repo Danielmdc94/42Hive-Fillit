@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 15:34:26 by acastano          #+#    #+#             */
+/*   Updated: 2022/03/14 15:47:32 by acastano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
 
@@ -21,13 +31,13 @@ void	ft_init_map(u_int16_t *map, u_int16_t map_size)
 		error(7);
 	while (x < map_size)
 	{
-		map[x] = (65535 >> map_size);
+		map[x] = (0xFFFF >> map_size);
 		x++;
 	}
 	map_size--;
 	while (x < 13)
 	{
-		map[x] = 65535;
+		map[x] = 0xFFFF;
 		x++;
 	}
 }
@@ -45,7 +55,7 @@ void	ft_fill_letters(char *map_char, t_tetri tetri, u_int16_t map_size)
 	y = (map_size * tetri.pos_y);
 	while (i < 64)
 	{
-		if (temp & (9223372036854775808UL >> i))
+		if (temp & (0x8000000000000000 >> i))
 		map_char[x + y] = tetri.id_char;
 		i++;
 		x++;
@@ -56,10 +66,30 @@ void	ft_fill_letters(char *map_char, t_tetri tetri, u_int16_t map_size)
 		}
 	}
 }
-/*
-0123456789012345
-0011000000000000  DDAA
-0001000000000000  CDDA
-0001000000000000  CCCA
-0000000000000000  BBBB
-*/
+
+void	ft_print_map(u_int16_t n_tetris, t_tetri *tetris, u_int16_t map_size)
+{
+	u_int16_t	i;
+	char		*map_char;
+	u_int16_t	map_len;
+
+	map_len = map_size * map_size;
+	i = 0;
+	map_char = (char *)malloc(sizeof(char) * (map_len + 1));
+	ft_memset(map_char, '.', map_len);
+	map_char[map_len] = '\0';
+	while (i < n_tetris)
+	{
+		ft_fill_letters(map_char, tetris[i], map_size);
+		i++;
+	}
+	i = 0;
+	while (i < map_len)
+	{
+		ft_putchar(map_char[i]);
+		if (((i + 1) % map_size) == 0)
+			printf("\n");
+		i++;
+	}
+	ft_strdel(&map_char);
+}

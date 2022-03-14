@@ -6,36 +6,36 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:59:49 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/07 17:42:38 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:57:41 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_bitoint_base(char *binary_string, int base);
-int			ft_positive_pow(int x, int y);
-u_int16_t	ft_move_piece(u_int16_t piece);
+static int			ft_bitoi_base(char *binary_string, int base);
+static int			ft_positive_pow(int x, int y);
+static u_int16_t	ft_move_piece(u_int16_t piece);
 
-u_int16_t	*str_to_int(char **file, int n_tet)
+u_int16_t	*str_to_int(char **file, int n_tetri)
 {
 	u_int16_t	*pieces;
 	int			i;
 
-	pieces = (u_int16_t *)ft_memalloc(sizeof(int) * n_tet);
+	pieces = (u_int16_t *)ft_memalloc(sizeof(int) * n_tetri);
 	i = 0;
-	while (i < n_tet)
+	while (i < n_tetri)
 	{
-		*pieces = ft_bitoint_base(*file, 2);
+		*pieces = ft_bitoi_base(*file, 2);
 		*pieces = ft_move_piece(*pieces);
 		pieces++;
 		file++;
 		i++;
 	}
-	pieces = pieces - n_tet;
+	pieces = pieces - n_tetri;
 	return (pieces);
 }
 
-int	ft_bitoint_base(char *binary_string, int base)
+static int	ft_bitoi_base(char *binary_string, int base)
 {
 	int	exponent;
 	int	number;
@@ -53,7 +53,7 @@ int	ft_bitoint_base(char *binary_string, int base)
 	return (number);
 }
 
-int	ft_positive_pow(int x, int y)
+static int	ft_positive_pow(int x, int y)
 {
 	int	res;
 
@@ -68,7 +68,7 @@ int	ft_positive_pow(int x, int y)
 	return (res);
 }
 
-u_int16_t	ft_move_piece(u_int16_t piece)
+static u_int16_t	ft_move_piece(u_int16_t piece)
 {
 	while (!(piece & 61440))
 		piece = piece << 4;

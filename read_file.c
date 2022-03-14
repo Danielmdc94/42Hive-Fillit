@@ -6,14 +6,14 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/14 13:24:19 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:51:48 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 static char	*validate_format(char *file, int tetriminos);
-static int	check_tet(char *file_str, int i);
+static int	check_tetri(char *file_str, int i);
 static char	**store_pieces(char *file_str, int tetriminos);
 static char	*isolate_piece(char *file_str, int tetriminos);
 
@@ -22,8 +22,7 @@ static char	*isolate_piece(char *file_str, int tetriminos);
  * Opens the file, reads it and checks everything is correct(except piece)
  * Returns the string containing the file once it has been validated.
  */
-
-char	**read_file(char *file, int *n_tet)
+char	**read_file(char *file, int *n_tetri)
 {
 	int		fd;
 	ssize_t	r_bytes;
@@ -40,7 +39,7 @@ char	**read_file(char *file, int *n_tet)
 	if ((r_bytes + 1) % 21 != 0 || r_bytes == 0)
 		error(2);
 	tetriminos = (r_bytes + 1) / 21;
-	*n_tet = tetriminos;
+	*n_tetri = tetriminos;
 	file_str = ft_strdup(buff);
 	validate_format(file_str, tetriminos);
 	return (store_pieces(file_str, tetriminos));
@@ -51,7 +50,6 @@ char	**read_file(char *file, int *n_tet)
  * Checks \n after each tetrimino.
  * Returns the string with the file.
  */
-
 static char	*validate_format(char *file_str, int tetriminos)
 {
 	int	i;
@@ -59,7 +57,7 @@ static char	*validate_format(char *file_str, int tetriminos)
 	i = 0;
 	while (file_str[i] != '\0' && tetriminos > 0)
 	{
-		i = check_tet(file_str, i);
+		i = check_tetri(file_str, i);
 		if (file_str[i] != '\n' && file_str[i] != '\0')
 			error(3);
 		tetriminos--;
@@ -69,12 +67,12 @@ static char	*validate_format(char *file_str, int tetriminos)
 }
 
 /*
- * check_tet() takes the str and the index we currently are in.
+ * check_tetri() takes the str and the index we currently are in.
  * It checks that only valid characters exist and \n are in place.
  * Returns the index where validate_format() can continue.
  */
 
-static int	check_tet(char *file_str, int i)
+static int	check_tetri(char *file_str, int i)
 {
 	int	lines;
 	int	columns;
