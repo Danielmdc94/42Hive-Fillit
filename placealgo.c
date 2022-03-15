@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:48:27 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/14 17:31:23 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:08:03 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,10 @@ int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
 		{
 			if (ft_place_tetri(map, &(tetris[0]), x, y) == 1)
 			{
-				if (n_tetris > 1)
-				{
-					if (fillit(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
-						return (1);
-					else
-					{
-						ft_update_tetri_xy(&tetris[0], 0, 0);
-						ft_revert_map(map, x, y, (tetris[0].id_int64));
-					}
-				}
+				if ((n_tetris > 1) && fillit(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
+					return (1);
+				else if (n_tetris > 1)
+					ft_revert_map(map, x, y, tetris);
 				else
 					return (1);
 			}
@@ -73,23 +67,3 @@ int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
 	}
 	return (0);
 }
-/*
-int	ft_placealgo(u_int16_t *map, t_tetri *tetris, int n_tetris, u_int16_t map_size)
-{
-	if (ft_place_tetri(map, &(tetris[0]), x, y) == 1)
-	{
-		if (n_tetris > 1)
-		{
-			if (ft_placealgo(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
-				return (1);
-			else
-			{
-				ft_update_tetri_xy(&tetris[0], 0, 0);
-				ft_revert_map(map, x, y, (tetris[0].id_int64));
-			}
-		}
-		else
-			return (1);
-	}
-}
-*/

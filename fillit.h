@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/14 17:25:17 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:07:06 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			ft_tetri_collision_y(u_int16_t *map, t_tetri tetri, int y);
 u_int16_t	ft_map_size(int n_tetris);
 void		ft_init_map(u_int16_t *map, int map_size);
 void		ft_update_map(u_int16_t *map, int x, int y, u_int64_t id_int64);
-void		ft_revert_map(u_int16_t *map, int x, int y, u_int64_t id_int64);
+void		ft_revert_map(u_int16_t *map, int x, int y,  t_tetri *tetris);//u_int64_t id_int64);
 void		ft_fill_letters(char *map_char, t_tetri tetri, int map_size);
 void		print_map(int n_tetris, t_tetri *tetris, int map_size);
 
