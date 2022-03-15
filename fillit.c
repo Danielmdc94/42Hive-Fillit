@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:48:27 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/15 12:22:34 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/15 15:09:48 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,12 @@ u_int64_t	ft_reorg_piece(u_int64_t id_int64)
 	return (temp_piece);
 }
 
-void	ft_update_tetri_xy(t_tetri *tetri, int x, int y)
-{
-	tetri->pos_x = x;
-	tetri->pos_y = y;
-}
-
 int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y)
 {
 	if (ft_collision_xy(map, *tetri, x, y) == 0)
 	{
-		ft_update_tetri_xy(tetri, x, y);
+		tetri->pos_x = x;
+		tetri->pos_y = y;
 		ft_update_map(map, x, y, tetri->id_int64);
 		return (1);
 	}

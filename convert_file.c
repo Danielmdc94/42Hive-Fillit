@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:59:49 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/14 15:57:41 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/15 15:31:55 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	ft_bitoi_base(char *binary_string, int base)
 		exponent--;
 		binary_string++;
 	}
+	if (number == 0)
+		error(6);
 	return (number);
 }
 

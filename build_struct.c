@@ -6,30 +6,30 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 12:22:57 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:48:51 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	build_struct(int n_tet, char **file,
-		u_int16_t *piece_id, t_tetri *tetri)
+void	build_struct(int n_tetris, char **file,
+		u_int16_t *piece_id, t_tetri *tetris)
 {
 	int			i;
 
 	i = 0;
-	while (i < n_tet)
+	while (i < n_tetris)
 	{
-		(*tetri).id_int = *piece_id;
-		(*tetri).string = file[i];
-		(*tetri).id_char = 'A' + i;
-		valid_tetri((*tetri).id_int);
-		(*tetri).id_int64 = ((u_int64_t)((*piece_id) & 61440) << 48);
-		(*tetri).id_int64 |= ((u_int64_t)((*piece_id) & 3840) << 36);
-		(*tetri).id_int64 |= ((u_int64_t)((*piece_id) & 240) << 24);
-		(*tetri).id_int64 |= ((u_int64_t)((*piece_id) & 15) << 12);
+		(*tetris).id_int = *piece_id;
+		(*tetris).string = file[i];
+		(*tetris).id_char = 'A' + i;
+		valid_tetri((*tetris).id_int);
+		(*tetris).id_int64 = ((u_int64_t)((*piece_id) & 61440) << 48);
+		(*tetris).id_int64 |= ((u_int64_t)((*piece_id) & 3840) << 36);
+		(*tetris).id_int64 |= ((u_int64_t)((*piece_id) & 240) << 24);
+		(*tetris).id_int64 |= ((u_int64_t)((*piece_id) & 15) << 12);
 		piece_id++;
-		tetri++;
+		tetris++;
 		i++;
 	}
 }

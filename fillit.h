@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 14:24:07 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/15 15:34:52 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FILLIT_H
 
 # include "libft/libft.h"
-# include <stdio.h>//TO DO: erase
+//# include <stdio.h>//TO DO: erase
 
 //open()
 # include <fcntl.h>
@@ -56,7 +56,7 @@ void		print_map(int n_tetris, t_tetri *tetris, int map_size);
 
 //placealgo.c
 u_int64_t	ft_reorg_piece(u_int64_t piece);
-void		ft_update_tetri_xy(t_tetri *tetri, int x, int y);
+//void		ft_update_tetri_xy(t_tetri *tetri, int x, int y);
 int			ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y);
 int			fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size);
 

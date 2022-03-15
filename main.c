@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 14:25:38 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:48:18 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 {
 	char		**file;
 	int			n_tetris;
-	t_tetri		*tetri_array;
+	t_tetri		*tetris;
 	u_int16_t	map_size;
 	u_int16_t	map[13];
 
@@ -38,11 +38,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error(0);
 	file = read_file(argv[1], &n_tetris);
-	tetri_array = (t_tetri *)ft_memalloc(sizeof(t_tetri)
+	tetris = (t_tetri *)ft_memalloc(sizeof(t_tetri)
 			* n_tetris + sizeof(t_tetri *));
 	map_size = ft_map_size(n_tetris);
-	build_struct(n_tetris, file, str_to_int(file, n_tetris), tetri_array);
-	ft_solver(map, tetri_array, n_tetris, map_size);
-	print_map(n_tetris, tetri_array, map_size);
+	build_struct(n_tetris, file, str_to_int(file, n_tetris), tetris);
+	ft_solver(map, tetris, n_tetris, map_size);
+	print_map(n_tetris, tetris, map_size);
 	return (0);
 }
