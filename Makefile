@@ -6,7 +6,7 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 13:41:26 by dpalacio          #+#    #+#              #
-#    Updated: 2022/03/15 13:27:10 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/03/15 14:34:11 by dpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ INCLUDES = -I ./libft/
 
 LIB = -L ./libft -lft
 
-SRC = main.c error.c read_file.c str_to_int.c build_struct.c map.c collision.c placealgo.c
+SRC = main.c error.c read_file.c convert_file.c build_struct.c map.c collision.c placealgo.c
 
-OBJ = main.o error.o read_file.o str_to_int.o build_struct.o map.o collision.o placealgo.o
+OBJ = main.o error.o read_file.o convert_file.o build_struct.o map.o collision.o placealgo.o
 
 all: $(NAME)
 
