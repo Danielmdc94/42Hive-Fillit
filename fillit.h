@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 12:15:56 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:24:07 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void		ft_update_tetri_xy(t_tetri *tetri, int x, int y);
 int			ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y);
 int			fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size);
 
-//print_tests.c TO DO: erase all
+/*print_tests.c TO DO: erase all
 void		ft_print_bin_map_line(u_int16_t map_line, u_int16_t bit_size);
 void		ft_print_bin_map(u_int16_t *map);
 void		ft_print_tetri(t_tetri tetri, u_int16_t bit_size);
 void		ft_print_tetri_16(t_tetri tetri);
 void		ft_print64(u_int64_t id);
-
+*/
 #endif

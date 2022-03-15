@@ -6,8 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 12:25:43 by dpalacio         ###   ########.fr       */
-/*   Updated: 2022/03/07 12:29:37 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:25:38 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +15,10 @@
 void	ft_solver(u_int16_t *map, t_tetri *tetri_array,
 		int n_tetris, int map_size)
 {
-	t_filldata	data;
-
-	data.n_tetris = n_tetris;
-	data.map_size = map_size;
 	ft_init_map(map, map_size);
 	while (map_size < 13)
 	{
-		if (fillit(map, tetri_array, data) == 1)
+		if (fillit(map, tetri_array, n_tetris, map_size) == 1)
 			break ;
 		else
 			error(8);
