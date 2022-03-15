@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:34:26 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/15 13:06:20 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:22:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_update_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
 	map[y + 3] = (temp);
 }
 
-void	ft_revert_map(u_int16_t *map, int x, int y, t_tetri *tetris)//u_int64_t id_int64)
+void	ft_revert_map(u_int16_t *map, int x, int y, t_tetri *tetris)
 {
 	u_int64_t	reorg_map;
 	u_int64_t	temp;
