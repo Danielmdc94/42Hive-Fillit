@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:34:26 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/14 17:24:35 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:22:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,19 @@ void	ft_update_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
 	map[y + 3] = (temp);
 }
 
-void	ft_revert_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
+void	ft_revert_map(u_int16_t *map, int x, int y, t_tetri *tetris)
 {
 	u_int64_t	reorg_map;
 	u_int64_t	temp;
 
 	temp = 0;
 	reorg_map = ft_reorg_piece(*(u_int64_t *)(map + y));
-	temp = (reorg_map ^ (id_int64 >> x));
+	temp = (reorg_map ^ (tetris[0].id_int64 >> x));
 	map[y] = (temp >> 48);
 	map[y + 1] = (temp >> 32);
 	map[y + 2] = (temp >> 16);
 	map[y + 3] = (temp);
+	ft_update_tetri_xy(tetris, 0, 0);
 }
 
 void	ft_fill_letters(char *map_char, t_tetri tetri, int map_size)

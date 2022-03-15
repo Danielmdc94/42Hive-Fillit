@@ -6,7 +6,11 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:48:27 by acastano          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/15 12:22:34 by dpalacio         ###   ########.fr       */
+=======
+/*   Updated: 2022/03/15 13:21:02 by dpalacio         ###   ########.fr       */
+>>>>>>> 92a436603821deef29b30a5d427baef5b45c5792
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +55,19 @@ int	ft_placealgo(u_int16_t *map, t_tetri *tetris, t_filldata data)
 				return (1);
 			else
 			{
+<<<<<<< HEAD
 				data.n_tetris++;
 				ft_update_tetri_xy(&tetris[0], 0, 0);
 				ft_revert_map(map, data.x, data.y, (tetris[0].id_int64));
+=======
+				if ((n_tetris > 1) && fillit(map, &(tetris[1]),
+						(n_tetris - 1), map_size) == 1)
+					return (1);
+				else if (n_tetris > 1)
+					ft_revert_map(map, x, y, tetris);
+				else
+					return (1);
+>>>>>>> 92a436603821deef29b30a5d427baef5b45c5792
 			}
 		}
 		else
@@ -61,6 +75,7 @@ int	ft_placealgo(u_int16_t *map, t_tetri *tetris, t_filldata data)
 	}
 	return (0);
 }
+<<<<<<< HEAD
 
 int	fillit(u_int16_t *map, t_tetri *tetris, t_filldata data)
 {
@@ -79,3 +94,5 @@ int	fillit(u_int16_t *map, t_tetri *tetris, t_filldata data)
 	}
 	return (0);
 }
+=======
+>>>>>>> 92a436603821deef29b30a5d427baef5b45c5792
