@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:47:42 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/10 13:51:59 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:56:13 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void	error(int error_code)
 		ft_putstr("error(6): Invalid tetrimino\n");
 	if (error_code == 7)
 		ft_putstr("error(7): Minimum map size is too big\n");
+	if (error_code == 8)
+		ft_putstr("error(8): Could not fit all pieces in maximum map size\n");
 	exit(-1);
 }
