@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:48:27 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/14 17:31:23 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:22:34 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,56 +40,42 @@ int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y)
 	return (0);
 }
 
-int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
+int	ft_placealgo(u_int16_t *map, t_tetri *tetris, t_filldata data)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (y < map_size)
+	if (ft_place_tetri(map, &(tetris[0]), data.x, data.y) == 1)
 	{
-		while (x < map_size)
+		if (data.n_tetris > 1)
 		{
-			if (ft_place_tetri(map, &(tetris[0]), x, y) == 1)
-			{
-				if (n_tetris > 1)
-				{
-					if (fillit(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
-						return (1);
-					else
-					{
-						ft_update_tetri_xy(&tetris[0], 0, 0);
-						ft_revert_map(map, x, y, (tetris[0].id_int64));
-					}
-				}
-				else
-					return (1);
-			}
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-	return (0);
-}
-/*
-int	ft_placealgo(u_int16_t *map, t_tetri *tetris, int n_tetris, u_int16_t map_size)
-{
-	if (ft_place_tetri(map, &(tetris[0]), x, y) == 1)
-	{
-		if (n_tetris > 1)
-		{
-			if (ft_placealgo(map, &(tetris[1]), (n_tetris - 1), map_size) == 1)
+			data.n_tetris--;
+			if (fillit(map, &(tetris[1]), data) == 1)
 				return (1);
 			else
 			{
+				data.n_tetris++;
 				ft_update_tetri_xy(&tetris[0], 0, 0);
-				ft_revert_map(map, x, y, (tetris[0].id_int64));
+				ft_revert_map(map, data.x, data.y, (tetris[0].id_int64));
 			}
 		}
 		else
 			return (1);
 	}
+	return (0);
 }
-*/
+
+int	fillit(u_int16_t *map, t_tetri *tetris, t_filldata data)
+{
+	data.x = 0;
+	data.y = 0;
+	while (data.y < data.map_size)
+	{
+		while (data.x < data.map_size)
+		{
+			if (ft_placealgo(map, tetris, data) == 1)
+				return (1);
+			data.x++;
+		}
+		data.x = 0;
+		data.y++;
+	}
+	return (0);
+}
