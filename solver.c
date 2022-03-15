@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   placealgo.c                                        :+:      :+:    :+:   */
+/*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 16:48:27 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/15 15:09:48 by dpalacio         ###   ########.fr       */
+/*   Created: 2022/03/15 17:33:30 by acastano          #+#    #+#             */
+/*   Updated: 2022/03/15 17:43:00 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,19 @@ u_int64_t	ft_reorg_piece(u_int64_t id_int64)
 	return (temp_piece);
 }
 
-int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y)
+static int	ft_collision(u_int16_t *map, t_tetri tetri, int x, int y)
 {
-	if (ft_collision_xy(map, *tetri, x, y) == 0)
+	if (x > 0)
+		tetri.id_int64 = (tetri.id_int64 >> x);
+	tetri.id_int64 = ft_reorg_piece(tetri.id_int64);
+	if (((*(u_int64_t *)(map + y)) & (tetri.id_int64)) != 0)
+		return (1);
+	return (0);
+}
+
+static int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y)
+{
+	if (ft_collision(map, *tetri, x, y) == 0)
 	{
 		tetri->pos_x = x;
 		tetri->pos_y = y;
@@ -35,7 +45,7 @@ int	ft_place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y)
 	return (0);
 }
 
-int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
+static int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
 {
 	int	x;
 	int	y;
@@ -62,4 +72,20 @@ int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
 		y++;
 	}
 	return (0);
+}
+
+void	ft_solver(u_int16_t *map, t_tetri *tetris,
+		int n_tetris, int map_size)
+{
+	while (map_size < 13)
+	{
+		ft_init_map(map, map_size);
+		if (fillit(map, tetris, n_tetris, map_size) == 1)
+		{
+			print_map(n_tetris, tetris, map_size);
+			return ;
+		}
+		map_size++;
+	}
+	error(8);
 }
