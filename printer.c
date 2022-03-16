@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 17:37:27 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/16 11:59:38 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:40:51 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_map(int n_tetris, t_tetri *tetris, int map_size)
 	map_char[map_len] = '\0';
 	while (i < n_tetris)
 	{
-		ft_fill_letters(map_char, tetris[i], map_size);
+		fill_letters(map_char, tetris[i], map_size);
 		i++;
 	}
 	i = 0;
@@ -49,7 +49,7 @@ void	print_map(int n_tetris, t_tetri *tetris, int map_size)
  * ft_fill_letters() takes the current char, each of the tetris and the map size
  * switches the current map char for the given tetri ID char if applicable
  */
-static void	ft_fill_letters(char *map_char, t_tetri tetri, int map_size)
+static void	fill_letters(char *map_char, t_tetri tetri, int map_size)
 {
 	u_int16_t	i;
 	u_int16_t	x;

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:59:00 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 17:32:17 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:36:37 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 	file = read_file(argv[1], &n_tetris);
 	tetris = (t_tetri *)ft_memalloc(sizeof(t_tetri)
 			* n_tetris + sizeof(t_tetri *));
-	map_size = ft_map_size(n_tetris);
+	map_size = map_size(n_tetris);
 	build_struct(n_tetris, file, str_to_int(file, n_tetris), tetris);
-	ft_solver(map, tetris, n_tetris, map_size);
+	solver(map, tetris, n_tetris, map_size);
 	return (0);
 }

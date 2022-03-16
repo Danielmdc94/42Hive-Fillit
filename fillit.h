@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/16 12:10:24 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:42:37 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ void		build_struct(int n_tet, char **file,
 				u_int16_t *piece_id, t_tetri *tetri);
 
 //solver.c
-u_int64_t	ft_reorg_piece(u_int64_t piece);
-void		ft_solver(u_int16_t *map, t_tetri *tetris,
-				int n_tetris, int map_size);
+u_int64_t	reorg_piece(u_int64_t piece);
+void		solver(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size);
 
 //printer.c
 void		print_map(int n_tetris, t_tetri *tetris, int map_size);
 
 //map.c
-u_int16_t	ft_map_size(int n_tetris);
-void		ft_init_map(u_int16_t *map, int map_size);
-void		ft_update_map(u_int16_t *map, int x, int y, u_int64_t id_int64);
-void		ft_revert_map(u_int16_t *map, int x, int y, t_tetri *tetris);
+u_int16_t	get_mapsize(int n_tetris);
+void		init_map(u_int16_t *map, int map_size);
+void		update_map(u_int16_t *map, int x, int y, u_int64_t id_int64);
+void		revert_map(u_int16_t *map, int x, int y, t_tetri *tetris);
 
 //error.c
 void		error(int error_code);
