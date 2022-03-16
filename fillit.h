@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/16 11:46:40 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:10:24 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 //open()
 # include <fcntl.h>
 
+//struct for storing tetrimnino data
 typedef struct s_tetri{
 	char		*string;
 	char		id_char;
@@ -33,7 +34,7 @@ char		**read_file(char *file, int *n_tetri);
 //convert_file.c
 u_int16_t	*str_to_int(char **file, int n_tetri);
 
-//build_struct
+//build_struct.c
 void		build_struct(int n_tet, char **file,
 				u_int16_t *piece_id, t_tetri *tetri);
 
