@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/14 15:51:48 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:00:15 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**read_file(char *file, int *n_tetri)
 /*
  * validate_format() takes the str with the file and the n of tetriminos read.
  * Checks \n after each tetrimino.
- * Returns the string with the file.
+ * Returns a string containing the file.
  */
 static char	*validate_format(char *file_str, int tetriminos)
 {
@@ -68,10 +68,9 @@ static char	*validate_format(char *file_str, int tetriminos)
 
 /*
  * check_tetri() takes the str and the index we currently are in.
- * It checks that only valid characters exist and \n are in place.
+ * Checks that only valid characters exist and \n are in place.
  * Returns the index where validate_format() can continue.
  */
-
 static int	check_tetri(char *file_str, int i)
 {
 	int	lines;
@@ -102,7 +101,6 @@ static int	check_tetri(char *file_str, int i)
  * It stores each piece individually in an array of str.
  * Returns said array.
  */
-
 static char	**store_pieces(char *file_str, int tetriminos)
 {
 	char	**file_pieces;
@@ -117,11 +115,10 @@ static char	**store_pieces(char *file_str, int tetriminos)
 }
 
 /*
- * isolate_pieces() takes the str that holds the file and the No of tetriminos.
- * It creates a str for the current array element in store_pieces.
+ * isolate_pieces() takes the str that holds the file and the n of tetriminos.
+ * Creates a str for the current array element in store_pieces.
  * Returns said str.
  */
-
 static char	*isolate_piece(char *file_str, int tetriminos)
 {
 	char	*piece;

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 17:55:37 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/16 11:46:40 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ u_int16_t	*str_to_int(char **file, int n_tetri);
 //build_struct
 void		build_struct(int n_tet, char **file,
 				u_int16_t *piece_id, t_tetri *tetri);
-void		valid_tetri(u_int16_t tetri_id);
 
 //solver.c
 u_int64_t	ft_reorg_piece(u_int64_t piece);

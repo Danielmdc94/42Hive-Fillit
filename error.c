@@ -6,12 +6,16 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 17:35:55 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/15 17:35:57 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/16 11:53:21 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+ * error() takes an error code depending on where it was called
+ * exits the program with a message corresponding the error code
+ */
 void	error(int error_code)
 {
 	if (error_code == 0)
