@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 17:33:30 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/16 12:51:34 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/17 11:12:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	solver(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
  * with place_tetri(), recursively calling fillit() to place the next pieces. If
  * it can't, it will use revert_map() to take the previous piece, and try placing
  * it again in a new position.
- * Return values: Returns 1 if there is no more tetris to place, and 0 if it couldn't
+ * Returns 1 if there is no more tetris to place, and 0 if it couldn't
  * place the tetris.
  */
 static int	fillit(u_int16_t *map, t_tetri *tetris, int n_tetris, int map_size)
@@ -114,9 +114,9 @@ static int	place_tetri(u_int16_t *map, t_tetri *tetri, int x, int y)
 }
 
 /*
- * collision() takes the map array, a tetri struct, and the positions x and y where
+ * collision() takes the map, a tetri struct, and the positions x and y where
  * to look for collision.
- * Shifts the piece to x position, calls reorg_piece() and then checks for collision
+ * Shifts the piece to x position, calls reorg_piece() and checks for collision
  * between the map and the piece in that position.
  * Return values: 1 if there is collision, 0 if there isn't.
  */
