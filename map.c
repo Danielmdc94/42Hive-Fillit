@@ -6,12 +6,16 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:34:26 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/16 12:38:28 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/17 11:28:50 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+ * get_mapsize() takes the number of tetris
+ * it calculates the minimum map size necessary
+ */
 u_int16_t	get_mapsize(int n_tetris)
 {
 	u_int16_t	size;
@@ -23,7 +27,8 @@ u_int16_t	get_mapsize(int n_tetris)
 }
 
 /*
-* Calls init_map() to initialize the map according to the map size,
+* init_map() takes the map array and the calculated map size
+* It initializes the map according to the map size
 */
 void	init_map(u_int16_t *map, int map_size)
 {
@@ -41,6 +46,10 @@ void	init_map(u_int16_t *map, int map_size)
 	}
 }
 
+/*
+ * update_map() takes the map, current position (x, y), and id int of each tetri
+ * updates the map once a tetri has been placed
+ */
 void	update_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
 {
 	u_int64_t	temp;
@@ -52,6 +61,10 @@ void	update_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
 	map[y + 3] = (temp);
 }
 
+/*
+ * revert_map() takes the map, current position (x, y), and the array of tetris
+ * ALBA PLS EXPLAIN =)
+ */
 void	revert_map(u_int16_t *map, int x, int y, t_tetri *tetris)
 {
 	u_int64_t	temp;
