@@ -6,35 +6,45 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 14:41:26 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 12:22:57 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/16 11:51:33 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	build_struct(int n_tet, char **file,
-		u_int16_t *piece_id, t_tetri *tetri)
+static void	valid_tetri(u_int16_t tetri_id);
+
+/*
+ * build_struct() takes the n of tetris, the file str, and int array of pieces
+ * fills all values of the struct for each tetri
+ */
+void	build_struct(int n_tetris, char **file,
+		u_int16_t *piece_id, t_tetri *tetris)
 {
 	int			i;
 
 	i = 0;
-	while (i < n_tet)
+	while (i < n_tetris)
 	{
-		(*tetri).id_int = *piece_id;
-		(*tetri).string = file[i];
-		(*tetri).id_char = 'A' + i;
-		valid_tetri((*tetri).id_int);
-		(*tetri).id_int64 = ((u_int64_t)((*piece_id) & 61440) << 48);
-		(*tetri).id_int64 |= ((u_int64_t)((*piece_id) & 3840) << 36);
-		(*tetri).id_int64 |= ((u_int64_t)((*piece_id) & 240) << 24);
-		(*tetri).id_int64 |= ((u_int64_t)((*piece_id) & 15) << 12);
+		(*tetris).id_int = *piece_id;
+		(*tetris).string = file[i];
+		(*tetris).id_char = 'A' + i;
+		valid_tetri((*tetris).id_int);
+		(*tetris).id_int64 = ((u_int64_t)((*piece_id) & 0xF000) << 48);
+		(*tetris).id_int64 |= ((u_int64_t)((*piece_id) & 0xF00) << 36);
+		(*tetris).id_int64 |= ((u_int64_t)((*piece_id) & 0xF0) << 24);
+		(*tetris).id_int64 |= ((u_int64_t)((*piece_id) & 0xF) << 12);
 		piece_id++;
-		tetri++;
+		tetris++;
 		i++;
 	}
 }
 
-void	valid_tetri(u_int16_t tetri_id)
+/*
+ * valid_tetri() takes the int id of a piece
+ * checks if the id is of a valid tetri
+ */
+static void	valid_tetri(u_int16_t tetri_id)
 {
 	int					i;
 	static u_int16_t	valid_tetri[19] = {11776, 17600, 19520, 19584, 19968,

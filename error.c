@@ -1,17 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_manager.c                                    :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 13:47:42 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/15 12:56:13 by dpalacio         ###   ########.fr       */
+/*   Created: 2022/03/15 17:35:55 by acastano          #+#    #+#             */
+/*   Updated: 2022/03/16 11:53:21 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+ * error() takes an error code depending on where it was called
+ * exits the program with a message corresponding the error code
+ */
 void	error(int error_code)
 {
 	if (error_code == 0)
