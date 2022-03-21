@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:28 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/21 12:31:31 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:11:24 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ static char	*isolate_piece(char *file_str, int tetriminos);
 /*
  * read_file() takes the file's name given to the program.
  * Opens the file, reads it and checks everything is correct(except piece)
- * Returns the string containing the file once it has been validated.
+ * Returns the array of strings containing the file once it has been formated
  */
 char	**read_file(char *file, int *n_tetri)
 {
 	int		fd;
 	ssize_t	r_bytes;
-	int		tetriminos;
 	char	buff[547];
 	char	*file_str;
+	char	**formated_file;
 
 	fd = open(file, O_RDONLY);
 	r_bytes = read(fd, buff, 547);
@@ -38,11 +38,12 @@ char	**read_file(char *file, int *n_tetri)
 	buff[r_bytes] = '\0';
 	if ((r_bytes + 1) % 21 != 0 || r_bytes == 0)
 		error(2);
-	tetriminos = (r_bytes + 1) / 21;
-	*n_tetri = tetriminos;
+	*n_tetri = (r_bytes + 1) / 21;
 	file_str = ft_strdup(buff);
-	validate_format(file_str, tetriminos);
-	return (store_pieces(file_str, tetriminos));
+	validate_format(file_str, *n_tetri);
+	formated_file = store_pieces(file_str, *n_tetri);
+	ft_strdel(&file_str);
+	return (formated_file);
 }
 
 /*
@@ -55,7 +56,7 @@ static char	*validate_format(char *file_str, int tetriminos)
 	int	i;
 
 	i = 0;
-	while (file_str[i] != '\0' && tetriminos > 0)
+	while (tetriminos > 0)
 	{
 		i = check_tetri(file_str, i);
 		if (file_str[i] != '\n' && file_str[i] != '\0')

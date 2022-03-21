@@ -6,13 +6,13 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 13:41:26 by dpalacio          #+#    #+#              #
-#    Updated: 2022/03/21 12:23:48 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/03/21 16:13:27 by acastano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 INCLUDES = -I ./libft/
 

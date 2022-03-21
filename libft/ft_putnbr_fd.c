@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:50:16 by dpalacio          #+#    #+#             */
-/*   Updated: 2021/11/24 17:27:05 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:21:48 by acastano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	ft_putnbr_fd(int n, int fd)
 		n = -n;
 		ft_putchar_fd('-', fd);
 	}
-	//	if (n <= 2147483647 && n >= -2147483648)
-	//	{
-		if (n > 9)
-			ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd('0' + n % 10, fd);
-		//	}
+	if (n > 9)
+		ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd('0' + n % 10, fd);
 }
