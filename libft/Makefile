@@ -6,12 +6,12 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 15:57:53 by dpalacio          #+#    #+#              #
-#    Updated: 2022/01/20 15:39:09 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/03/21 12:24:59 by dpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 SRC = ft_memset.c\
 	  ft_bzero.c\
 	  ft_memcpy.c\
