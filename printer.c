@@ -6,13 +6,13 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 17:37:27 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/16 12:40:51 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:03:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	ft_fill_letters(char *map_char, t_tetri tetri, int map_size);
+static void	fill_letters(char *map_char, t_tetri tetri, int map_size);
 
 /*
  * print_map() takes the n of tetris, the array of tetris and the map size
