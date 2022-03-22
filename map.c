@@ -6,7 +6,7 @@
 /*   By: acastano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:34:26 by acastano          #+#    #+#             */
-/*   Updated: 2022/03/21 20:10:20 by acastano         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:31:22 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	update_map(u_int16_t *map, int x, int y, u_int64_t id_int64)
 }
 
 /*
- * revert_map() takes an uint representing the map, the position (x, y) of the piece we
- * want to delete from the map, and the array of tetris.
- * To be able to compare the map with the tetris, the map needs to be casted to an uint64,
- * and rearranged so the bits are in the same order. This will be done in blocks of 16 bits.
+ * revert_map() takes an uint representing the map, the position (x, y) of the 
+ * piece we want to delete from the map, and the array of tetris.
+ * To compare the map with the tetris, the map needs to be casted to an uint64,
+ * and rearranged in blocks of 16 bits so they are in the same order.
  */
 void	revert_map(u_int16_t *map, int x, int y, t_tetri *tetris)
 {
